@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru" class="scroll-smooth">
+<html lang="ru" class="scroll-smooth overflow-x-hidden">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
@@ -10,7 +10,7 @@
   <meta property="og:image" content="https://avatars.mds.yandex.net/get-altay/1899727/2a0000018733a62d82dd5dde788eb3daf41b/XXXL">
   <meta property="og:type" content="website">
 
-  <!-- Favicon -->
+  <!-- Favicon (Pure SVG Vector) -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23D4AF37' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='m2 4 3 12h14l3-12-6 7-4-7-4 7-6-7zm3 16h14'/></svg>">
 
   <!-- Google Fonts: Unbounded (Headlines) & Onest (Body/UI) -->
@@ -55,6 +55,12 @@
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
   <style>
+    /* Strict Mobile Viewport Safety & Clean Layout */
+    html, body {
+      max-width: 100vw;
+      overflow-x: hidden !important;
+    }
+
     /* Clean Leaflet: Hide default flags and attributions per standard */
     .leaflet-control-attribution, .leaflet-attribution-flag { display: none !important; }
     
@@ -68,39 +74,36 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
-    .gold-border-gradient {
-      border-image: linear-gradient(to right, #D4AF37, #E8D5B5, #B38F24) 1;
-    }
   </style>
 </head>
-<body class="bg-dark text-slate-200 font-sans antialiased selection:bg-gold selection:text-dark min-h-screen flex flex-col">
+<body class="bg-dark text-slate-200 font-sans antialiased selection:bg-gold selection:text-dark min-h-screen flex flex-col overflow-x-hidden">
 
-  <!-- Top Announcement Bar -->
-  <div class="bg-gradient-to-r from-gold/20 via-gold/10 to-gold/20 border-b border-gold/30 text-xs py-2 px-4 text-center text-champagne">
-    <div class="max-w-7xl mx-auto flex items-center justify-center gap-2 flex-wrap">
+  <!-- Top Announcement Bar (Fluid wrapping) -->
+  <div class="bg-gradient-to-r from-gold/20 via-gold/10 to-gold/20 border-b border-gold/30 text-xs py-2 px-3 text-center text-champagne">
+    <div class="max-w-7xl mx-auto flex items-center justify-center gap-1.5 flex-wrap text-center">
       <span class="inline-flex items-center gap-1 font-semibold text-gold">
         <i data-lucide="sparkles" class="w-3.5 h-3.5"></i> Акция сезона 2026:
       </span>
-      <span>Профессиональный свет, звук, LED-экран и тяжелый дым — <strong>0 ₽ в подарок</strong> при бронировании даты на этой неделе!</span>
-      <a href="#calculator" class="underline underline-offset-4 font-medium hover:text-white ml-1">Рассчитать смету →</a>
+      <span>Свет, звук, LED-экран и тяжелый дым — <strong>0 ₽ в подарок</strong> при бронировании на этой неделе!</span>
+      <a href="#calculator" class="underline underline-offset-4 font-medium hover:text-white ml-1 whitespace-nowrap">Рассчитать смету →</a>
     </div>
   </div>
 
-  <!-- Header -->
-  <header class="sticky top-0 z-40 bg-dark/90 backdrop-blur-md border-b border-border">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
+  <!-- Header (Mobile Safe Layout) -->
+  <header class="sticky top-0 z-40 bg-dark/95 backdrop-blur-md border-b border-border">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 sm:h-20 flex items-center justify-between gap-2 sm:gap-4">
       
       <!-- Logo -->
-      <a href="#" class="flex items-center gap-3 shrink-0">
-        <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-gold to-gold-dark flex items-center justify-center text-dark shadow-lg shadow-gold/20">
-          <i data-lucide="crown" class="w-6 h-6 stroke-[2.2]"></i>
+      <a href="#" class="flex items-center gap-2.5 sm:gap-3 shrink-0">
+        <div class="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-gradient-to-br from-gold to-gold-dark flex items-center justify-center text-dark shadow-lg shadow-gold/20 shrink-0">
+          <i data-lucide="crown" class="w-5 h-5 sm:w-6 sm:h-6 stroke-[2.2]"></i>
         </div>
         <div>
-          <div class="font-display font-extrabold text-lg sm:text-xl tracking-wider text-white uppercase flex items-center gap-2">
+          <div class="font-display font-extrabold text-base sm:text-xl tracking-wider text-white uppercase flex items-center gap-1.5">
             ВЕРСАЛЬ
-            <span class="text-[10px] font-sans font-bold bg-gold/20 text-gold px-1.5 py-0.5 rounded tracking-normal border border-gold/30">HALL</span>
+            <span class="text-[9px] sm:text-[10px] font-sans font-bold bg-gold/20 text-gold px-1.5 py-0.5 rounded tracking-normal border border-gold/30">HALL</span>
           </div>
-          <div class="text-[11px] font-medium text-slate-400 tracking-wider uppercase whitespace-nowrap">
+          <div class="text-[10px] sm:text-[11px] font-medium text-slate-400 tracking-wider uppercase hidden sm:block whitespace-nowrap">
             Банкетный ресторан • Кисловодск
           </div>
         </div>
@@ -119,8 +122,8 @@
       </nav>
 
       <!-- Phone & Action Button -->
-      <div class="flex items-center gap-4 shrink-0">
-        <div class="hidden sm:flex flex-col text-right">
+      <div class="flex items-center gap-2 sm:gap-4 shrink-0">
+        <div class="hidden md:flex flex-col text-right">
           <a href="tel:+79383566365" class="font-display font-bold text-sm lg:text-base text-white hover:text-gold transition whitespace-nowrap">
             +7 (938) 356-63-65
           </a>
@@ -128,7 +131,7 @@
             <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> Прием звонков 10:00–19:00
           </span>
         </div>
-        <a href="#calculator" class="px-4 py-2.5 rounded-xl bg-gold hover:bg-gold-light text-dark font-semibold text-xs sm:text-sm tracking-wide transition shadow-lg shadow-gold/20 flex items-center gap-2 whitespace-nowrap">
+        <a href="#calculator" class="px-3 sm:px-4 py-2 sm:py-2.5 rounded-xl bg-gold hover:bg-gold-light text-dark font-semibold text-xs sm:text-sm tracking-wide transition shadow-lg shadow-gold/20 flex items-center gap-1.5 whitespace-nowrap">
           <i data-lucide="calendar-check" class="w-4 h-4"></i>
           <span>Забронировать</span>
         </a>
@@ -137,18 +140,18 @@
   </header>
 
   <!-- Hero Section -->
-  <section class="relative pt-12 pb-20 lg:pt-20 lg:pb-28 overflow-hidden bg-gradient-to-b from-panel via-dark to-dark">
-    <!-- Subtle Background Ambient Glow -->
-    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-96 bg-gold/10 blur-[140px] pointer-events-none rounded-full"></div>
+  <section class="relative pt-8 pb-16 sm:pt-16 sm:pb-24 overflow-hidden bg-gradient-to-b from-panel via-dark to-dark">
+    <!-- Ambient Glow (Contained) -->
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-72 sm:w-full sm:max-w-5xl h-64 sm:h-96 bg-gold/10 blur-[100px] pointer-events-none rounded-full"></div>
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 items-center">
         
-        <!-- Left: Pitch & Value Proposition -->
+        <!-- Left Column -->
         <div class="lg:col-span-7 flex flex-col items-start">
           
-          <!-- Verified Badge -->
-          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-surface border border-gold/40 text-xs font-medium text-champagne mb-6 shadow-md">
+          <!-- Rating Badge -->
+          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-surface border border-gold/40 text-xs font-medium text-champagne mb-5 shadow-md flex-wrap">
             <div class="flex text-amber-400">
               <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
               <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
@@ -158,34 +161,34 @@
             </div>
             <span class="font-bold text-white">5.0</span>
             <span class="text-slate-400">•</span>
-            <span>225+ отзывов гостей на Яндекс Картах</span>
+            <span>225+ отзывов на Яндекс Картах</span>
           </div>
 
-          <!-- Main Heading (Unbounded font) -->
-          <h1 class="font-display font-black text-3xl sm:text-4xl lg:text-5xl tracking-tight text-white leading-[1.15] mb-6">
+          <!-- Heading -->
+          <h1 class="font-display font-black text-2xl sm:text-4xl lg:text-5xl tracking-tight text-white leading-[1.18] mb-5">
             Дворцовый банкетный ресторан в Кисловодске <span class="gold-gradient-text">для свадеб, юбилеев и торжеств</span>
           </h1>
 
           <!-- Subtitle -->
-          <p class="text-base sm:text-lg text-slate-300 font-normal leading-relaxed mb-8 max-w-2xl">
+          <p class="text-sm sm:text-base text-slate-300 font-normal leading-relaxed mb-6 max-w-2xl">
             Роскошный классический зал до 160 персон с дворцовой лепниной и хрустальными люстрами. Авторская кавказская и европейская кухня от шеф-повара, мангал на углях, <strong>0 ₽ пробковый сбор</strong> и охраняемая закрытая парковка.
           </p>
 
           <!-- 3 Value Bullets -->
-          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 w-full mb-8">
-            <div class="p-3.5 rounded-xl bg-panel border border-border flex items-start gap-3">
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 w-full mb-8">
+            <div class="p-3 rounded-xl bg-panel border border-border flex items-start gap-2.5">
               <div class="p-2 rounded-lg bg-gold/10 text-gold shrink-0">
-                <i data-lucide="wine" class="w-5 h-5"></i>
+                <i data-lucide="wine" class="w-4 h-4"></i>
               </div>
               <div>
                 <div class="font-bold text-white text-xs sm:text-sm">0 ₽ Свой алкоголь</div>
-                <div class="text-[11px] text-slate-400">Без пробкового сбора, свои соки и торт</div>
+                <div class="text-[11px] text-slate-400">Без пробкового сбора, торт и соки</div>
               </div>
             </div>
 
-            <div class="p-3.5 rounded-xl bg-panel border border-border flex items-start gap-3">
+            <div class="p-3 rounded-xl bg-panel border border-border flex items-start gap-2.5">
               <div class="p-2 rounded-lg bg-gold/10 text-gold shrink-0">
-                <i data-lucide="music" class="w-5 h-5"></i>
+                <i data-lucide="music" class="w-4 h-4"></i>
               </div>
               <div>
                 <div class="font-bold text-white text-xs sm:text-sm">Свет и звук в дар</div>
@@ -193,9 +196,9 @@
               </div>
             </div>
 
-            <div class="p-3.5 rounded-xl bg-panel border border-border flex items-start gap-3">
+            <div class="p-3 rounded-xl bg-panel border border-border flex items-start gap-2.5">
               <div class="p-2 rounded-lg bg-gold/10 text-gold shrink-0">
-                <i data-lucide="shield-check" class="w-5 h-5"></i>
+                <i data-lucide="shield-check" class="w-4 h-4"></i>
               </div>
               <div>
                 <div class="font-bold text-white text-xs sm:text-sm">0 ₽ Аренда зала</div>
@@ -205,60 +208,59 @@
           </div>
 
           <!-- CTAs -->
-          <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full sm:w-auto">
-            <a href="#calculator" class="px-7 py-4 rounded-xl bg-gradient-to-r from-gold to-gold-dark hover:from-gold-light hover:to-gold text-dark font-display font-bold text-sm tracking-wide text-center transition shadow-xl shadow-gold/20 flex items-center justify-center gap-2">
+          <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full sm:w-auto">
+            <a href="#calculator" class="px-6 py-3.5 rounded-xl bg-gradient-to-r from-gold to-gold-dark hover:from-gold-light hover:to-gold text-dark font-display font-bold text-xs sm:text-sm tracking-wide text-center transition shadow-xl shadow-gold/20 flex items-center justify-center gap-2">
               <span>Рассчитать смету банкета</span>
               <i data-lucide="arrow-right" class="w-4 h-4"></i>
             </a>
-            <a href="https://wa.me/79383566365?text=%D0%94%D0%BE%D0%B1%D1%80%D1%8B%D0%B9%20%D0%B4%D0%B5%D0%BD%D1%8C%21%20%D0%A5%D0%BE%D1%82%D0%B8%D0%BC%20%D1%83%D0%B7%D0%BD%D0%B0%D1%82%D1%8C%20%D1%81%D0%B2%D0%BE%D0%B1%D0%BE%D0%B4%D0%BD%D1%8B%D0%B5%20%D0%B4%D0%B0%D1%82%D1%8B%20%D0%B8%20%D1%81%D1%82%D0%BE%D0%B8%D0%BC%D0%BE%D1%81%D1%82%D1%8C%20%D0%B1%D0%B0%D0%BD%D0%BA%D0%B5%D1%82%D0%B0%20%D0%B2%20%C2%AB%D0%92%D0%B5%D1%80%D1%81%D0%B0%D0%BB%D0%B5%C2%BB" target="_blank" rel="noopener noreferrer" class="px-6 py-4 rounded-xl bg-surface hover:bg-card border border-border text-white font-semibold text-sm text-center transition flex items-center justify-center gap-2">
+            <a href="https://wa.me/79383566365?text=%D0%94%D0%BE%D0%B1%D1%80%D1%8B%D0%B9%20%D0%B4%D0%B5%D0%BD%D1%8C%21%20%D0%A5%D0%BE%D1%82%D0%B8%D0%BC%20%D1%83%D0%B7%D0%BD%D0%B0%D1%82%D1%8C%20%D1%81%D0%B2%D0%BE%D0%B1%D0%BE%D0%B4%D0%BD%D1%8B%D0%B5%20%D0%B4%D0%B0%D1%82%D1%8B%20%D0%B8%20%D1%81%D1%82%D0%BE%D0%B8%D0%BC%D0%BE%D1%81%D1%82%D1%8C%20%D0%B1%D0%B0%D0%BD%D0%BA%D0%B5%D1%82%D0%B0%20%D0%B2%20%C2%AB%D0%92%D0%B5%D1%80%D1%81%D0%B0%D0%BB%D0%B5%C2%BB" target="_blank" rel="noopener noreferrer" class="px-5 py-3.5 rounded-xl bg-surface hover:bg-card border border-border text-white font-semibold text-xs sm:text-sm text-center transition flex items-center justify-center gap-2">
               <i data-lucide="message-circle" class="w-4 h-4 text-emerald-400"></i>
-              <span>Узнать свободные даты в WhatsApp</span>
+              <span>Свободные даты в WhatsApp</span>
             </a>
           </div>
 
         </div>
 
-        <!-- Right: Real Photo Showcase Card -->
-        <div class="lg:col-span-5 relative">
-          <!-- Frame with Gold Accents -->
-          <div class="relative rounded-3xl p-3 bg-gradient-to-b from-gold/30 via-border to-border shadow-2xl">
+        <!-- Right Column: Real Photo Card -->
+        <div class="lg:col-span-5 relative mt-4 lg:mt-0">
+          <div class="relative rounded-3xl p-2 sm:p-3 bg-gradient-to-b from-gold/30 via-border to-border shadow-2xl">
             <div class="relative rounded-2xl overflow-hidden aspect-[4/3] bg-panel">
               <img src="https://avatars.mds.yandex.net/get-altay/239474/2a0000018733a36ebe3ed503085b3156f078/XXXL" alt="Банкетный зал Версаль в Кисловодске" class="w-full h-full object-cover transform hover:scale-105 transition duration-700">
               
-              <!-- Top Badges -->
-              <div class="absolute top-4 left-4 right-4 flex items-center justify-between gap-2">
-                <div class="px-3 py-1.5 rounded-xl bg-dark/80 backdrop-blur-md border border-white/10 text-xs font-bold text-white flex items-center gap-1.5 shadow-lg">
-                  <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+              <!-- Badges -->
+              <div class="absolute top-3 left-3 right-3 flex items-center justify-between gap-2">
+                <div class="px-2.5 py-1 rounded-xl bg-dark/80 backdrop-blur-md border border-white/10 text-[11px] font-bold text-white flex items-center gap-1.5 shadow-lg">
+                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
                   <span>Сезон 2026 открыт</span>
                 </div>
-                <div class="px-3 py-1.5 rounded-xl bg-gold text-dark font-display font-extrabold text-xs shadow-lg">
+                <div class="px-2.5 py-1 rounded-xl bg-gold text-dark font-display font-extrabold text-[11px] shadow-lg">
                   до 160 персон
                 </div>
               </div>
 
-              <!-- Bottom Overlay -->
-              <div class="absolute bottom-0 inset-x-0 p-5 bg-gradient-to-t from-dark via-dark/80 to-transparent">
-                <div class="font-display font-bold text-white text-base mb-1">
+              <!-- Overlay -->
+              <div class="absolute bottom-0 inset-x-0 p-4 bg-gradient-to-t from-dark via-dark/80 to-transparent">
+                <div class="font-display font-bold text-white text-sm sm:text-base mb-0.5">
                   Главный Дворцовый Зал
                 </div>
-                <div class="text-xs text-slate-300 flex items-center gap-2">
+                <div class="text-[11px] text-slate-300 flex items-center gap-1.5">
                   <i data-lucide="map-pin" class="w-3.5 h-3.5 text-gold shrink-0"></i>
                   <span>Кисловодск, ул. 40 лет Октября, 26</span>
                 </div>
               </div>
             </div>
 
-            <!-- Floating Trust Badge -->
-            <div class="absolute -bottom-5 -left-4 sm:left-6 bg-dark/95 backdrop-blur-md border border-gold/40 rounded-2xl p-4 shadow-xl flex items-center gap-3">
-              <div class="w-10 h-10 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center font-bold text-lg font-display">
+            <!-- Floating Badge -->
+            <div class="absolute -bottom-4 left-4 sm:left-6 bg-dark/95 backdrop-blur-md border border-gold/40 rounded-xl p-3 shadow-xl flex items-center gap-2.5">
+              <div class="w-8 h-8 rounded-lg bg-amber-500/20 text-amber-400 flex items-center justify-center font-bold text-base font-display">
                 5.0
               </div>
               <div>
-                <div class="text-xs font-bold text-white flex items-center gap-1">
+                <div class="text-[11px] font-bold text-white flex items-center gap-1">
                   Высший рейтинг Яндекса
-                  <i data-lucide="check-circle" class="w-3.5 h-3.5 text-emerald-400"></i>
+                  <i data-lucide="check-circle" class="w-3 h-3 text-emerald-400"></i>
                 </div>
-                <div class="text-[11px] text-slate-400">92% гостей рекомендуют кухню</div>
+                <div class="text-[10px] text-slate-400">92% гостей рекомендуют кухню</div>
               </div>
             </div>
 
@@ -269,82 +271,80 @@
     </div>
   </section>
 
-  <!-- Trust Numbers Section -->
-  <section class="py-10 bg-panel border-y border-border">
+  <!-- Trust Numbers Bar -->
+  <section id="benefits" class="py-8 sm:py-10 bg-panel border-y border-border">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-        <div class="p-4">
-          <div class="font-display font-black text-3xl sm:text-4xl text-gold mb-1">до 160</div>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 text-center">
+        <div class="p-3">
+          <div class="font-display font-black text-2xl sm:text-4xl text-gold mb-0.5">до 160</div>
           <div class="text-xs sm:text-sm font-semibold text-white">Вместимость гостей</div>
-          <div class="text-[11px] text-slate-400 mt-1">Круглые и классические столы</div>
+          <div class="text-[10px] sm:text-[11px] text-slate-400 mt-0.5">Круглая и классическая рассадка</div>
         </div>
-        <div class="p-4">
-          <div class="font-display font-black text-3xl sm:text-4xl text-gold mb-1">0 ₽</div>
+        <div class="p-3">
+          <div class="font-display font-black text-2xl sm:text-4xl text-gold mb-0.5">0 ₽</div>
           <div class="text-xs sm:text-sm font-semibold text-white">Пробковый сбор</div>
-          <div class="text-[11px] text-slate-400 mt-1">Любой свой алкоголь и торт</div>
+          <div class="text-[10px] sm:text-[11px] text-slate-400 mt-0.5">Любой свой алкоголь и торт</div>
         </div>
-        <div class="p-4">
-          <div class="font-display font-black text-3xl sm:text-4xl text-gold mb-1">от 2 800 ₽</div>
+        <div class="p-3">
+          <div class="font-display font-black text-2xl sm:text-4xl text-gold mb-0.5">от 2 800 ₽</div>
           <div class="text-xs sm:text-sm font-semibold text-white">Меню на персону</div>
-          <div class="text-[11px] text-slate-400 mt-1">Мангал, горячее, 8+ закусок</div>
+          <div class="text-[10px] sm:text-[11px] text-slate-400 mt-0.5">Мангал, горячее, 8+ закусок</div>
         </div>
-        <div class="p-4">
-          <div class="font-display font-black text-3xl sm:text-4xl text-gold mb-1">12+ лет</div>
+        <div class="p-3">
+          <div class="font-display font-black text-2xl sm:text-4xl text-gold mb-0.5">12+ лет</div>
           <div class="text-xs sm:text-sm font-semibold text-white">Опыт проведения торжеств</div>
-          <div class="text-[11px] text-slate-400 mt-1">Безупречная репутация в КМВ</div>
+          <div class="text-[10px] sm:text-[11px] text-slate-400 mt-0.5">Безупречная репутация в КМВ</div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Halls & Spaces Showcase (with Mobile Horizontal Carousel) -->
-  <section id="halls" class="py-16 sm:py-24 bg-dark">
+  <!-- Halls Showcase (Mobile swipe carousel) -->
+  <section id="halls" class="py-14 sm:py-20 bg-dark overflow-hidden">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
-      <!-- Section Header with Carousel Controls -->
-      <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-12 gap-4">
+      <div class="flex items-end justify-between mb-8 sm:mb-10 gap-4">
         <div>
-          <span class="text-xs font-bold text-gold uppercase tracking-widest block mb-2">Пространство для вашего торжества</span>
-          <h2 class="font-display font-extrabold text-2xl sm:text-3xl lg:text-4xl text-white">
+          <span class="text-xs font-bold text-gold uppercase tracking-widest block mb-1.5">Пространство для вашего торжества</span>
+          <h2 class="font-display font-extrabold text-xl sm:text-3xl text-white">
             Интерьеры залов «Версаль»
           </h2>
         </div>
         
-        <!-- Controls for mobile carousel -->
-        <div class="flex items-center gap-2 self-end sm:self-auto">
-          <button onclick="scrollCarousel('halls-carousel', -320)" aria-label="Предыдущий зал" class="w-10 h-10 rounded-xl bg-panel border border-border hover:border-gold/50 flex items-center justify-center text-slate-300 hover:text-white transition">
-            <i data-lucide="chevron-left" class="w-5 h-5"></i>
+        <div class="flex items-center gap-2">
+          <button onclick="scrollCarousel('halls-carousel', -280)" aria-label="Предыдущий зал" class="w-9 h-9 rounded-xl bg-panel border border-border hover:border-gold/50 flex items-center justify-center text-slate-300 hover:text-white transition">
+            <i data-lucide="chevron-left" class="w-4 h-4"></i>
           </button>
-          <button onclick="scrollCarousel('halls-carousel', 320)" aria-label="Следующий зал" class="w-10 h-10 rounded-xl bg-panel border border-border hover:border-gold/50 flex items-center justify-center text-slate-300 hover:text-white transition">
-            <i data-lucide="chevron-right" class="w-5 h-5"></i>
+          <button onclick="scrollCarousel('halls-carousel', 280)" aria-label="Следующий зал" class="w-9 h-9 rounded-xl bg-panel border border-border hover:border-gold/50 flex items-center justify-center text-slate-300 hover:text-white transition">
+            <i data-lucide="chevron-right" class="w-4 h-4"></i>
           </button>
         </div>
       </div>
 
-      <!-- Halls Carousel / Grid -->
-      <div id="halls-carousel" class="flex overflow-x-auto snap-x snap-mandatory scrollbar-none gap-6 pb-4 -mx-4 px-4 sm:mx-0 sm:px-0">
+      <!-- Halls Carousel Container -->
+      <div id="halls-carousel" class="flex overflow-x-auto snap-x snap-mandatory scrollbar-none gap-5 pb-4 -mx-4 px-4 sm:mx-0 sm:px-0">
         
-        <!-- Hall 1: Grand Hall -->
-        <div class="min-w-[300px] sm:min-w-[360px] md:min-w-[380px] lg:flex-1 snap-start bg-panel rounded-2xl border border-border overflow-hidden flex flex-col group hover:border-gold/40 transition">
+        <!-- Grand Hall -->
+        <div class="w-[85vw] max-w-[320px] sm:max-w-[360px] md:max-w-none md:flex-1 shrink-0 md:shrink snap-start bg-panel rounded-2xl border border-border overflow-hidden flex flex-col group hover:border-gold/40 transition">
           <div class="aspect-[16/10] overflow-hidden relative">
             <img src="https://avatars.mds.yandex.net/get-altay/20390960/2a0000019f0351e1045b4d79f3e99615386f/XXXL" alt="Главный Дворцовый Зал Версаль" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-            <div class="absolute top-3 left-3 px-2.5 py-1 rounded-lg bg-dark/80 backdrop-blur-md text-[11px] font-bold text-gold border border-gold/30">
+            <div class="absolute top-2.5 left-2.5 px-2 py-0.5 rounded-lg bg-dark/80 backdrop-blur-md text-[10px] font-bold text-gold border border-gold/30">
               Основной зал
             </div>
-            <div class="absolute bottom-3 right-3 px-2.5 py-1 rounded-lg bg-dark/80 backdrop-blur-md text-[11px] font-bold text-white">
+            <div class="absolute bottom-2.5 right-2.5 px-2 py-0.5 rounded-lg bg-dark/80 backdrop-blur-md text-[10px] font-bold text-white">
               до 160 гостей
             </div>
           </div>
-          <div class="p-6 flex-1 flex flex-col justify-between">
+          <div class="p-5 flex-1 flex flex-col justify-between">
             <div>
-              <h3 class="font-display font-bold text-lg text-white mb-2">Grand Hall «Версаль»</h3>
+              <h3 class="font-display font-bold text-base sm:text-lg text-white mb-1.5">Grand Hall «Версаль»</h3>
               <p class="text-xs text-slate-400 mb-4 leading-relaxed">
-                Парадный зал в дворцовом стиле: высокие потолки, хрусталь, танцпол 90 м², стационарная сцена для музыкантов и светодиодный экран.
+                Парадный зал в дворцовом стиле: высокие потолки, хрусталь, танцпол 90 м², сцена для музыкантов и светодиодный экран.
               </p>
-              <div class="space-y-1.5 mb-6 text-xs text-slate-300">
-                <div class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-gold"></i> Рассадка: круглая (бандитская) или европейская</div>
-                <div class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-gold"></i> Мощная климатическая система зима/лето</div>
-                <div class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-gold"></i> Отдельный выход на закрытую территорию</div>
+              <div class="space-y-1.5 mb-5 text-xs text-slate-300">
+                <div class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-gold shrink-0"></i> Рассадка: круглая или европейская</div>
+                <div class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-gold shrink-0"></i> Мощный климат-контроль зима/лето</div>
+                <div class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-gold shrink-0"></i> Выход на закрытую территорию</div>
               </div>
             </div>
             <a href="#calculator" class="w-full py-2.5 rounded-xl bg-surface hover:bg-card border border-border text-center text-xs font-semibold text-white transition block">
@@ -353,27 +353,27 @@
           </div>
         </div>
 
-        <!-- Hall 2: VIP Chamber Hall -->
-        <div class="min-w-[300px] sm:min-w-[360px] md:min-w-[380px] lg:flex-1 snap-start bg-panel rounded-2xl border border-border overflow-hidden flex flex-col group hover:border-gold/40 transition">
+        <!-- VIP Hall -->
+        <div class="w-[85vw] max-w-[320px] sm:max-w-[360px] md:max-w-none md:flex-1 shrink-0 md:shrink snap-start bg-panel rounded-2xl border border-border overflow-hidden flex flex-col group hover:border-gold/40 transition">
           <div class="aspect-[16/10] overflow-hidden relative">
             <img src="https://avatars.mds.yandex.net/get-altay/1359533/2a0000018733a3f0588187c2cc481cd17ff3/XXXL" alt="Камерный VIP-Зал Версаль" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-            <div class="absolute top-3 left-3 px-2.5 py-1 rounded-lg bg-dark/80 backdrop-blur-md text-[11px] font-bold text-champagne border border-white/20">
+            <div class="absolute top-2.5 left-2.5 px-2 py-0.5 rounded-lg bg-dark/80 backdrop-blur-md text-[10px] font-bold text-champagne border border-white/20">
               Камерный зал
             </div>
-            <div class="absolute bottom-3 right-3 px-2.5 py-1 rounded-lg bg-dark/80 backdrop-blur-md text-[11px] font-bold text-white">
+            <div class="absolute bottom-2.5 right-2.5 px-2 py-0.5 rounded-lg bg-dark/80 backdrop-blur-md text-[10px] font-bold text-white">
               от 15 до 40 гостей
             </div>
           </div>
-          <div class="p-6 flex-1 flex flex-col justify-between">
+          <div class="p-5 flex-1 flex flex-col justify-between">
             <div>
-              <h3 class="font-display font-bold text-lg text-white mb-2">Камерный VIP-Зал</h3>
+              <h3 class="font-display font-bold text-base sm:text-lg text-white mb-1.5">Камерный VIP-Зал</h3>
               <p class="text-xs text-slate-400 mb-4 leading-relaxed">
-                Идеален для семейных юбилеев, крестин, помолвок и камерных свадеб. Уединенная обстановка без посторонних звуков и индивидуальный официант.
+                Идеален для семейных юбилеев, крестин, помолвок и небольших свадеб. Уединенная обстановка без посторонних звуков.
               </p>
-              <div class="space-y-1.5 mb-6 text-xs text-slate-300">
-                <div class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-gold"></i> Приватная lounge-зона и гардеробная</div>
-                <div class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-gold"></i> Собственная аудиосистема для вашей музыки</div>
-                <div class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-gold"></i> Персональное внимание шеф-повара</div>
+              <div class="space-y-1.5 mb-5 text-xs text-slate-300">
+                <div class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-gold shrink-0"></i> Приватная lounge-зона и гардероб</div>
+                <div class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-gold shrink-0"></i> Собственная аудиосистема для музыки</div>
+                <div class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-gold shrink-0"></i> Персональное внимание шеф-повара</div>
               </div>
             </div>
             <a href="#calculator" class="w-full py-2.5 rounded-xl bg-surface hover:bg-card border border-border text-center text-xs font-semibold text-white transition block">
@@ -382,27 +382,27 @@
           </div>
         </div>
 
-        <!-- Hall 3: Welcome & Photo Zone -->
-        <div class="min-w-[300px] sm:min-w-[360px] md:min-w-[380px] lg:flex-1 snap-start bg-panel rounded-2xl border border-border overflow-hidden flex flex-col group hover:border-gold/40 transition">
+        <!-- Welcome Zone -->
+        <div class="w-[85vw] max-w-[320px] sm:max-w-[360px] md:max-w-none md:flex-1 shrink-0 md:shrink snap-start bg-panel rounded-2xl border border-border overflow-hidden flex flex-col group hover:border-gold/40 transition">
           <div class="aspect-[16/10] overflow-hidden relative">
             <img src="https://avatars.mds.yandex.net/get-altay/1018126/2a0000018733a36df3e854e7e2439fb673e9/XXXL" alt="Зона Welcome и фотосессий" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-            <div class="absolute top-3 left-3 px-2.5 py-1 rounded-lg bg-dark/80 backdrop-blur-md text-[11px] font-bold text-gold border border-gold/30">
+            <div class="absolute top-2.5 left-2.5 px-2 py-0.5 rounded-lg bg-dark/80 backdrop-blur-md text-[10px] font-bold text-gold border border-gold/30">
               Welcome & Lounge
             </div>
-            <div class="absolute bottom-3 right-3 px-2.5 py-1 rounded-lg bg-dark/80 backdrop-blur-md text-[11px] font-bold text-white">
+            <div class="absolute bottom-2.5 right-2.5 px-2 py-0.5 rounded-lg bg-dark/80 backdrop-blur-md text-[10px] font-bold text-white">
               Фуршет & Встреча
             </div>
           </div>
-          <div class="p-6 flex-1 flex flex-col justify-between">
+          <div class="p-5 flex-1 flex flex-col justify-between">
             <div>
-              <h3 class="font-display font-bold text-lg text-white mb-2">Welcome-зона и Арка</h3>
+              <h3 class="font-display font-bold text-base sm:text-lg text-white mb-1.5">Welcome-зона и Арка</h3>
               <p class="text-xs text-slate-400 mb-4 leading-relaxed">
-                Пространство для сбора гостей, горки шампанского, легкого фуршета и памятных фотосессий до начала основного банкета.
+                Пространство для сбора гостей, горки шампанского, легкого фуршета и фотосессий до начала банкета.
               </p>
-              <div class="space-y-1.5 mb-6 text-xs text-slate-300">
-                <div class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-gold"></i> Место для выездной регистрации</div>
-                <div class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-gold"></i> Горка шампанского (в подарок по акции)</div>
-                <div class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-gold"></i> Фоновая музыка и легкие напитки</div>
+              <div class="space-y-1.5 mb-5 text-xs text-slate-300">
+                <div class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-gold shrink-0"></i> Место для выездной регистрации</div>
+                <div class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-gold shrink-0"></i> Горка шампанского (в подарок по акции)</div>
+                <div class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-gold shrink-0"></i> Фоновая музыка и напитки</div>
               </div>
             </div>
             <a href="#calculator" class="w-full py-2.5 rounded-xl bg-surface hover:bg-card border border-border text-center text-xs font-semibold text-white transition block">
@@ -415,16 +415,16 @@
     </div>
   </section>
 
-  <!-- Interactive Banquet Calculator (The Conversion Engine) -->
-  <section id="calculator" class="py-16 sm:py-24 bg-panel border-y border-border relative">
+  <!-- Interactive Banquet Calculator -->
+  <section id="calculator" class="py-14 sm:py-20 bg-panel border-y border-border relative">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
-      <div class="text-center max-w-3xl mx-auto mb-12">
-        <span class="text-xs font-bold text-gold uppercase tracking-widest block mb-2">Прозрачный расчет без скрытых доплат</span>
-        <h2 class="font-display font-extrabold text-2xl sm:text-3xl lg:text-4xl text-white mb-4">
+      <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-12">
+        <span class="text-xs font-bold text-gold uppercase tracking-widest block mb-1.5">Прозрачный расчет без скрытых доплат</span>
+        <h2 class="font-display font-extrabold text-2xl sm:text-3xl lg:text-4xl text-white mb-3">
           Онлайн-калькулятор сметы банкета
         </h2>
-        <p class="text-sm text-slate-300">
+        <p class="text-xs sm:text-sm text-slate-300">
           Укажите формат, количество гостей и опции. Калькулятор моментально рассчитает ориентировочный бюджет и зафиксирует подарок к вашей дате.
         </p>
       </div>
@@ -432,12 +432,12 @@
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         
         <!-- Controls Column -->
-        <div class="lg:col-span-7 space-y-8 bg-surface p-6 sm:p-8 rounded-3xl border border-border shadow-xl">
+        <div class="lg:col-span-7 space-y-6 sm:space-y-8 bg-surface p-5 sm:p-8 rounded-3xl border border-border shadow-xl">
           
           <!-- Step 1: Format -->
           <div>
-            <label class="block text-xs font-bold text-gold uppercase tracking-wider mb-3">1. Формат вашего торжества</label>
-            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5" id="event-type-group">
+            <label class="block text-xs font-bold text-gold uppercase tracking-wider mb-2.5">1. Формат вашего торжества</label>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2" id="event-type-group">
               <button type="button" onclick="setEventType('wedding')" class="event-btn p-3 rounded-xl border border-gold bg-gold/10 text-white font-semibold text-xs text-center transition flex flex-col items-center gap-1.5" data-val="wedding">
                 <i data-lucide="heart" class="w-4 h-4 text-gold"></i>
                 <span>Свадьба</span>
@@ -459,58 +459,55 @@
 
           <!-- Step 2: Guests Slider -->
           <div>
-            <div class="flex items-center justify-between mb-3">
+            <div class="flex items-center justify-between mb-2.5">
               <label class="text-xs font-bold text-gold uppercase tracking-wider">2. Количество гостей</label>
-              <span class="font-display font-extrabold text-lg text-white bg-dark px-3 py-1 rounded-lg border border-border" id="guests-count-display">60 персон</span>
+              <span class="font-display font-extrabold text-base sm:text-lg text-white bg-dark px-3 py-1 rounded-lg border border-border" id="guests-count-display">60 персон</span>
             </div>
             <input type="range" id="guests-slider" min="15" max="160" step="5" value="60" oninput="updateCalculator()" class="w-full h-2 bg-dark rounded-lg appearance-none cursor-pointer accent-gold">
             <div class="flex justify-between text-[11px] text-slate-400 mt-2">
-              <span>15 чел (Камерный VIP)</span>
+              <span>15 чел (VIP)</span>
               <span>80 чел</span>
-              <span>160 чел (Grand Hall)</span>
+              <span>160 чел (Grand)</span>
             </div>
           </div>
 
           <!-- Step 3: Menu Tier Selection -->
           <div>
-            <label class="block text-xs font-bold text-gold uppercase tracking-wider mb-3">3. Пакет банкетного меню</label>
-            <div class="space-y-3" id="menu-tier-group">
+            <label class="block text-xs font-bold text-gold uppercase tracking-wider mb-2.5">3. Пакет банкетного меню</label>
+            <div class="space-y-2.5" id="menu-tier-group">
               
-              <!-- Tier 1 -->
               <label class="menu-label flex items-start gap-3 p-3.5 rounded-xl border border-gold bg-gold/10 cursor-pointer transition">
                 <input type="radio" name="menu_tier" value="2800" checked onchange="updateCalculator()" class="mt-1 accent-gold">
                 <div class="flex-1">
                   <div class="flex items-center justify-between">
-                    <span class="font-bold text-white text-sm">Пакет «Классический»</span>
-                    <span class="font-display font-extrabold text-gold text-sm">2 800 ₽ / гость</span>
+                    <span class="font-bold text-white text-xs sm:text-sm">Пакет «Классический»</span>
+                    <span class="font-display font-extrabold text-gold text-xs sm:text-sm">2 800 ₽ / гость</span>
                   </div>
                   <p class="text-xs text-slate-300 mt-1">
-                    8 холодных закусок (мясные, сырные, овощные плато), 3 фирменных салата, горячее блюдо от шефа, мангал и выпечка.
+                    8 холодных закусок (мясные, сырные, овощные плато), 3 фирменных салата, горячее от шефа, мангал и выпечка.
                   </p>
                 </div>
               </label>
 
-              <!-- Tier 2 -->
               <label class="menu-label flex items-start gap-3 p-3.5 rounded-xl border border-border bg-panel hover:bg-dark cursor-pointer transition">
                 <input type="radio" name="menu_tier" value="3600" onchange="updateCalculator()" class="mt-1 accent-gold">
                 <div class="flex-1">
                   <div class="flex items-center justify-between">
-                    <span class="font-bold text-white text-sm">Пакет «Торжественный» (Хит)</span>
-                    <span class="font-display font-extrabold text-gold text-sm">3 600 ₽ / гость</span>
+                    <span class="font-bold text-white text-xs sm:text-sm">Пакет «Торжественный» (Хит)</span>
+                    <span class="font-display font-extrabold text-gold text-xs sm:text-sm">3 600 ₽ / гость</span>
                   </div>
                   <p class="text-xs text-slate-300 mt-1">
-                    Расширенный мангал (шашлык из баранины, телятины и птицы), 10 закусок, 4 салата, запеченная форель, соусы и фрукты.
+                    Расширенный мангал (шашлык из баранины, телятины и птицы), 10 закусок, 4 салата, запеченная форель и фрукты.
                   </p>
                 </div>
               </label>
 
-              <!-- Tier 3 -->
               <label class="menu-label flex items-start gap-3 p-3.5 rounded-xl border border-border bg-panel hover:bg-dark cursor-pointer transition">
                 <input type="radio" name="menu_tier" value="4800" onchange="updateCalculator()" class="mt-1 accent-gold">
                 <div class="flex-1">
                   <div class="flex items-center justify-between">
-                    <span class="font-bold text-white text-sm">Пакет «Премиум Шеф»</span>
-                    <span class="font-display font-extrabold text-gold text-sm">4 800 ₽ / гость</span>
+                    <span class="font-bold text-white text-xs sm:text-sm">Пакет «Премиум Шеф»</span>
+                    <span class="font-display font-extrabold text-gold text-xs sm:text-sm">4 800 ₽ / гость</span>
                   </div>
                   <p class="text-xs text-slate-300 mt-1">
                     Шоу-блюдо от шефа (банкетный ягненок на вертеле / осетрина), деликатесные сыры, европейские закуски и авторская подача.
@@ -523,39 +520,31 @@
 
           <!-- Step 4: Additional Options -->
           <div>
-            <label class="block text-xs font-bold text-gold uppercase tracking-wider mb-3">4. Дополнительные опции и бонусы</label>
-            <div class="space-y-2.5">
+            <label class="block text-xs font-bold text-gold uppercase tracking-wider mb-2.5">4. Дополнительные опции и бонусы</label>
+            <div class="space-y-2">
               
-              <label class="flex items-center justify-between p-3 rounded-xl bg-dark/60 border border-border cursor-pointer">
+              <div class="flex items-center justify-between p-3 rounded-xl bg-dark/60 border border-border">
                 <div class="flex items-center gap-2.5">
-                  <input type="checkbox" id="opt-smoke" checked disabled class="accent-gold rounded">
+                  <i data-lucide="check-square" class="w-4 h-4 text-emerald-400"></i>
                   <span class="text-xs font-medium text-slate-200">Тяжелый дым на первый танец + LED-экран</span>
                 </div>
-                <span class="text-xs font-bold text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">В ПОДАРОК (0 ₽)</span>
-              </label>
+                <span class="text-[11px] font-bold text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20 whitespace-nowrap">0 ₽ ПОДАРОК</span>
+              </div>
 
-              <label class="flex items-center justify-between p-3 rounded-xl bg-dark/60 border border-border cursor-pointer">
+              <div class="flex items-center justify-between p-3 rounded-xl bg-dark/60 border border-border">
                 <div class="flex items-center gap-2.5">
-                  <input type="checkbox" id="opt-corkage" checked disabled class="accent-gold rounded">
+                  <i data-lucide="check-square" class="w-4 h-4 text-emerald-400"></i>
                   <span class="text-xs font-medium text-slate-200">Свой алкоголь, торт и фрукты (0 ₽ пробковый сбор)</span>
                 </div>
-                <span class="text-xs font-bold text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">БЕСПЛАТНО</span>
-              </label>
-
-              <label class="flex items-center justify-between p-3 rounded-xl bg-dark/60 border border-border cursor-pointer hover:border-gold/30 transition">
-                <div class="flex items-center gap-2.5">
-                  <input type="checkbox" id="opt-champagne" checked onchange="updateCalculator()" class="accent-gold rounded">
-                  <span class="text-xs font-medium text-slate-200">Горка шампанского на встречу гостей (Welcome)</span>
-                </div>
-                <span class="text-xs font-bold text-gold" id="champagne-badge">0 ₽ по акции</span>
-              </label>
+                <span class="text-[11px] font-bold text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20 whitespace-nowrap">БЕСПЛАТНО</span>
+              </div>
 
               <label class="flex items-center justify-between p-3 rounded-xl bg-dark/60 border border-border cursor-pointer hover:border-gold/30 transition">
                 <div class="flex items-center gap-2.5">
                   <input type="checkbox" id="opt-furshet" onchange="updateCalculator()" class="accent-gold rounded">
                   <span class="text-xs font-medium text-slate-200">Фуршетный стол с кавказскими сырами и ягодами</span>
                 </div>
-                <span class="text-xs font-bold text-slate-300">+250 ₽/гость</span>
+                <span class="text-xs font-bold text-slate-300 whitespace-nowrap">+250 ₽/гость</span>
               </label>
 
             </div>
@@ -563,17 +552,17 @@
 
         </div>
 
-        <!-- Result / Summary Column (Sticky on Desktop) -->
-        <div class="lg:col-span-5 sticky top-28 space-y-6">
+        <!-- Result Column -->
+        <div class="lg:col-span-5 sticky top-24 space-y-5">
           <div class="bg-gradient-to-br from-panel via-surface to-dark p-6 sm:p-8 rounded-3xl border border-gold/40 shadow-2xl relative overflow-hidden">
             
             <div class="absolute -top-10 -right-10 w-40 h-40 bg-gold/10 rounded-full blur-2xl"></div>
 
-            <span class="text-xs font-bold text-gold uppercase tracking-widest block mb-2">Предварительная смета</span>
-            <h3 class="font-display font-extrabold text-xl text-white mb-6">Расчет вашего торжества</h3>
+            <span class="text-xs font-bold text-gold uppercase tracking-widest block mb-1.5">Предварительная смета</span>
+            <h3 class="font-display font-extrabold text-xl text-white mb-5">Расчет вашего торжества</h3>
 
-            <!-- Details breakdown -->
-            <div class="space-y-3 pb-6 border-b border-border text-xs sm:text-sm">
+            <!-- Details -->
+            <div class="space-y-2.5 pb-5 border-b border-border text-xs sm:text-sm">
               <div class="flex justify-between text-slate-300">
                 <span>Формат события:</span>
                 <strong class="text-white font-medium" id="res-event-type">Свадьба</strong>
@@ -592,7 +581,7 @@
               </div>
               <div class="flex justify-between text-slate-300">
                 <span>Пробковый сбор:</span>
-                <strong class="text-emerald-400 font-semibold">0 ₽ (Разрешен свой алкоголь)</strong>
+                <strong class="text-emerald-400 font-semibold">0 ₽ (Свой алкоголь)</strong>
               </div>
               <div class="flex justify-between text-slate-300">
                 <span>Бонусы к залу:</span>
@@ -600,8 +589,8 @@
               </div>
             </div>
 
-            <!-- Total Budget Display -->
-            <div class="py-6 border-b border-border">
+            <!-- Total Budget -->
+            <div class="py-5 border-b border-border">
               <div class="text-xs text-slate-400 mb-1">Ориентировочная сумма банкета:</div>
               <div class="font-display font-black text-3xl sm:text-4xl text-white gold-gradient-text" id="total-budget-display">
                 168 000 ₽
@@ -611,9 +600,9 @@
               </div>
             </div>
 
-            <!-- WhatsApp Action Button -->
-            <div class="pt-6 space-y-3">
-              <a id="calc-whatsapp-btn" href="#" target="_blank" rel="noopener noreferrer" class="w-full py-4 rounded-xl bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-400 hover:to-emerald-500 text-white font-display font-bold text-xs sm:text-sm tracking-wide text-center transition shadow-lg shadow-emerald-500/20 flex items-center justify-center gap-2">
+            <!-- WhatsApp CTA Button -->
+            <div class="pt-5 space-y-2.5">
+              <a id="calc-whatsapp-btn" href="#" target="_blank" rel="noopener noreferrer" class="w-full py-3.5 sm:py-4 rounded-xl bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-400 hover:to-emerald-500 text-white font-display font-bold text-xs sm:text-sm tracking-wide text-center transition shadow-lg shadow-emerald-500/20 flex items-center justify-center gap-2">
                 <i data-lucide="message-circle" class="w-4 h-4"></i>
                 <span>Зафиксировать смету и дату в WhatsApp</span>
               </a>
@@ -624,7 +613,6 @@
 
           </div>
 
-          <!-- Trust guarantee -->
           <div class="p-4 rounded-2xl bg-panel border border-border flex items-center gap-3">
             <div class="w-9 h-9 rounded-xl bg-gold/10 text-gold flex items-center justify-center shrink-0">
               <i data-lucide="file-text" class="w-5 h-5"></i>
@@ -641,32 +629,32 @@
     </div>
   </section>
 
-  <!-- Banquet Menu Showcase (Real dishes from Chef) -->
-  <section id="menu" class="py-16 sm:py-24 bg-dark">
+  <!-- Banquet Menu Showcase -->
+  <section id="menu" class="py-14 sm:py-20 bg-dark">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
-      <div class="text-center max-w-3xl mx-auto mb-12">
-        <span class="text-xs font-bold text-gold uppercase tracking-widest block mb-2">Щедрый кавказский и европейский стол</span>
-        <h2 class="font-display font-extrabold text-2xl sm:text-3xl lg:text-4xl text-white mb-4">
+      <div class="text-center max-w-3xl mx-auto mb-10">
+        <span class="text-xs font-bold text-gold uppercase tracking-widest block mb-1.5">Щедрый кавказский и европейский стол</span>
+        <h2 class="font-display font-extrabold text-2xl sm:text-3xl text-white mb-3">
           Банкетное меню от Шеф-повара
         </h2>
-        <p class="text-sm text-slate-300">
-          Только свежайшие фермерские продукты КМВ, отборное мясо с мангала на углях и подача блюд ресторанного уровня. Столы обновляются вовремя.
+        <p class="text-xs sm:text-sm text-slate-300">
+          Только свежайшие фермерские продукты КМВ, отборное мясо с мангала на углях и ресторанная подача.
         </p>
       </div>
 
       <!-- Menu Tabs -->
-      <div class="flex items-center justify-center gap-2 flex-wrap mb-10" id="menu-tabs">
-        <button onclick="switchMenuTab('mangal')" class="menu-tab-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-gold text-dark transition" data-tab="mangal">
+      <div class="flex items-center justify-center gap-2 flex-wrap mb-8" id="menu-tabs">
+        <button onclick="switchMenuTab('mangal')" class="menu-tab-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-gold text-dark transition" data-tab="mangal">
           Мангал и горячее
         </button>
-        <button onclick="switchMenuTab('cold')" class="menu-tab-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-panel hover:bg-surface text-slate-300 border border-border transition" data-tab="cold">
+        <button onclick="switchMenuTab('cold')" class="menu-tab-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-panel hover:bg-surface text-slate-300 border border-border transition" data-tab="cold">
           Холодные закуски
         </button>
-        <button onclick="switchMenuTab('salads')" class="menu-tab-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-panel hover:bg-surface text-slate-300 border border-border transition" data-tab="salads">
+        <button onclick="switchMenuTab('salads')" class="menu-tab-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-panel hover:bg-surface text-slate-300 border border-border transition" data-tab="salads">
           Салаты
         </button>
-        <button onclick="switchMenuTab('dessert')" class="menu-tab-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-panel hover:bg-surface text-slate-300 border border-border transition" data-tab="dessert">
+        <button onclick="switchMenuTab('dessert')" class="menu-tab-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-panel hover:bg-surface text-slate-300 border border-border transition" data-tab="dessert">
           Десерты и выпечка
         </button>
       </div>
@@ -679,12 +667,12 @@
             <img src="https://avatars.mds.yandex.net/get-altay/934739/2a0000018733a6125da6dd0b4cc192eea0fe/XXXL" alt="Шашлык на мангале Версаль" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
           </div>
           <div class="p-5">
-            <div class="flex justify-between items-start mb-2">
-              <h4 class="font-display font-bold text-white text-base">Мясное мангальное плато</h4>
+            <div class="flex justify-between items-start mb-1.5">
+              <h4 class="font-display font-bold text-white text-sm sm:text-base">Мясное мангальное плато</h4>
               <span class="text-xs font-bold text-gold whitespace-nowrap">1 200 г</span>
             </div>
             <p class="text-xs text-slate-400 leading-relaxed mb-3">
-              Сочный шашлык из мякоти молодого барашка, свиная корейка на углях, куриное филе и люля-кебаб из отборной телятины с маринованным луком и лавашом.
+              Сочный шашлык из мякоти молодого барашка, свиная корейка на углях, куриное филе и люля-кебаб из телятины с лавашом.
             </p>
             <div class="text-[11px] text-emerald-400 font-medium">✓ Входит в пакеты «Торжественный» и «Шеф»</div>
           </div>
@@ -695,12 +683,12 @@
             <img src="https://avatars.mds.yandex.net/get-altay/8075227/2a00000187339d7e9163f3aab665a99f158b/XXXL" alt="Запеченная рыба и горячее" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
           </div>
           <div class="p-5">
-            <div class="flex justify-between items-start mb-2">
-              <h4 class="font-display font-bold text-white text-base">Радужная форель на углях</h4>
+            <div class="flex justify-between items-start mb-1.5">
+              <h4 class="font-display font-bold text-white text-sm sm:text-base">Радужная форель на углях</h4>
               <span class="text-xs font-bold text-gold whitespace-nowrap">350 г / порция</span>
             </div>
             <p class="text-xs text-slate-400 leading-relaxed mb-3">
-              Горная кавказская форель с хрустящей корочкой, травами тархуна и лимонно-чесночным сливочным соусом. Подается с запеченными овощами.
+              Горная форель с хрустящей корочкой, тархуном и сливочно-чесночным соусом. Подается с запеченными овощами.
             </p>
             <div class="text-[11px] text-emerald-400 font-medium">✓ Подается индивидуально каждому гостю</div>
           </div>
@@ -711,12 +699,12 @@
             <img src="https://avatars.mds.yandex.net/get-altay/6487610/2a00000182d1a24a95c3072d91c6f0bb9fb6/XXXL" alt="Овощи на углях и закуски" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
           </div>
           <div class="p-5">
-            <div class="flex justify-between items-start mb-2">
-              <h4 class="font-display font-bold text-white text-base">Хоровац из печеных овощей</h4>
+            <div class="flex justify-between items-start mb-1.5">
+              <h4 class="font-display font-bold text-white text-sm sm:text-base">Хоровац из печеных овощей</h4>
               <span class="text-xs font-bold text-gold whitespace-nowrap">400 г</span>
             </div>
             <p class="text-xs text-slate-400 leading-relaxed mb-3">
-              Баклажаны, спелые помидоры и сладкий болгарский перец, запеченные на открытых углях с чесноком, кинзой и базиликом.
+              Баклажаны, спелые помидоры и сладкий перец на углях с чесноком, кинзой и базиликом.
             </p>
             <div class="text-[11px] text-emerald-400 font-medium">✓ Традиционный кавказский гарнир к шашлыку</div>
           </div>
@@ -793,8 +781,8 @@
 
       </div>
 
-      <div class="mt-10 text-center">
-        <a href="https://wa.me/79383566365?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%9E%D1%82%D0%BF%D1%80%D0%B0%D0%B2%D1%8C%D1%82%D0%B5%2C%20%D0%BF%D0%BE%D0%B6%D0%B0%D0%BB%D1%83%D0%B9%D1%81%D1%82%D0%B0%2C%20%D0%BF%D0%BE%D0%BB%D0%BD%D1%8B%D0%B9%20PDF-%D0%BA%D0%B0%D1%82%D0%B0%D0%BB%D0%BE%D0%B3%20%D0%B1%D0%B0%D0%BD%D0%BA%D0%B5%D1%82%D0%BD%D0%BE%D0%B3%D0%BE%20%D0%BC%D0%B5%D0%BD%D1%8E%20%D1%81%20%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%BE%D0%B2%D0%BA%D0%BE%D0%B9" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-surface hover:bg-card border border-border text-sm font-semibold text-white transition">
+      <div class="mt-8 text-center">
+        <a href="https://wa.me/79383566365?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%9E%D1%82%D0%BF%D1%80%D0%B0%D0%B2%D1%8C%D1%82%D0%B5%2C%20%D0%BF%D0%BE%D0%B6%D0%B0%D0%BB%D1%83%D0%B9%D1%81%D1%82%D0%B0%2C%20%D0%BF%D0%BE%D0%BB%D0%BD%D1%8B%D0%B9%20PDF-%D0%BA%D0%B0%D1%82%D0%B0%D0%BB%D0%BE%D0%B3%20%D0%B1%D0%B0%D0%BD%D0%BA%D0%B5%D1%82%D0%BD%D0%BE%D0%B3%D0%BE%20%D0%BC%D0%B5%D0%BD%D1%8E%20%D1%81%20%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%BE%D0%B2%D0%BA%D0%BE%D0%B9" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-surface hover:bg-card border border-border text-xs sm:text-sm font-semibold text-white transition">
           <i data-lucide="download" class="w-4 h-4 text-gold"></i>
           <span>Получить полный каталог банкетного меню (PDF в WhatsApp)</span>
         </a>
@@ -803,30 +791,30 @@
     </div>
   </section>
 
-  <!-- Meet the Host / Administrator Yana Section -->
-  <section class="py-16 sm:py-20 bg-panel border-y border-border">
+  <!-- Meet the Host (Yana) -->
+  <section class="py-14 sm:py-18 bg-panel border-y border-border">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="bg-gradient-to-r from-surface via-panel to-surface p-8 sm:p-12 rounded-3xl border border-gold/30 shadow-xl">
-        <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+      <div class="bg-gradient-to-r from-surface via-panel to-surface p-6 sm:p-10 rounded-3xl border border-gold/30 shadow-xl">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-6 sm:gap-8 items-center">
           
           <div class="md:col-span-4 flex flex-col items-center sm:items-start text-center sm:text-left">
-            <div class="w-24 h-24 rounded-2xl bg-gradient-to-br from-gold to-gold-dark p-1 mb-4 shadow-lg shadow-gold/20">
+            <div class="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-gradient-to-br from-gold to-gold-dark p-1 mb-3.5 shadow-lg shadow-gold/20">
               <div class="w-full h-full rounded-[14px] bg-dark flex items-center justify-center text-gold">
-                <i data-lucide="user-check" class="w-12 h-12"></i>
+                <i data-lucide="user-check" class="w-10 h-10 sm:w-12 sm:h-12"></i>
               </div>
             </div>
-            <div class="font-display font-bold text-xl text-white">Яна</div>
-            <div class="text-xs text-gold font-semibold uppercase tracking-wider mb-2">Старший управляющий банкетного ресторана</div>
+            <div class="font-display font-bold text-lg sm:text-xl text-white">Яна</div>
+            <div class="text-xs text-gold font-semibold uppercase tracking-wider mb-1">Старший управляющий банкетного ресторана</div>
             <div class="text-xs text-slate-400">Более 10 лет сопровождает свадьбы и юбилеи в «Версале»</div>
           </div>
 
-          <div class="md:col-span-8 space-y-4">
-            <blockquote class="text-sm sm:text-base text-slate-200 leading-relaxed italic border-l-2 border-gold pl-4">
+          <div class="md:col-span-8 space-y-3.5">
+            <blockquote class="text-xs sm:text-base text-slate-200 leading-relaxed italic border-l-2 border-gold pl-3.5 sm:pl-4">
               «Моя главная задача — избавить вас от головной боли при подготовке. Я лично помогу составить идеальное меню: чтобы столы ломились от изобилия, но без лишних переплат за лишние килограммы еды. В день праздника я нахожусь в зале с первой до последней минуты: контролирую слаженную работу официантов, своевременную подачу горячего с мангала и комфорт каждого вашего гостя.»
             </blockquote>
             
-            <div class="flex flex-wrap items-center gap-4 pt-2">
-              <a href="https://wa.me/79383566365?text=%D0%AF%D0%BD%D0%B0%2C%20%D0%B7%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%A5%D0%BE%D1%82%D0%B8%D0%BC%20%D0%BF%D1%80%D0%BE%D0%BA%D0%BE%D0%BD%D1%81%D1%83%D0%BB%D1%8C%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C%D1%81%D1%8F%20%D0%BF%D0%BE%20%D0%BF%D0%BE%D0%B2%D0%BE%D0%B4%D1%83%20%D0%B1%D0%B0%D0%BD%D0%BA%D0%B5%D1%82%D0%B0" target="_blank" rel="noopener noreferrer" class="px-5 py-2.5 rounded-xl bg-gold hover:bg-gold-light text-dark font-semibold text-xs sm:text-sm tracking-wide transition flex items-center gap-2">
+            <div class="flex flex-wrap items-center gap-3 pt-1">
+              <a href="https://wa.me/79383566365?text=%D0%AF%D0%BD%D0%B0%2C%20%D0%B7%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%A5%D0%BE%D1%82%D0%B8%D0%BC%20%D0%BF%D1%80%D0%BE%D0%BA%D0%BE%D0%BD%D1%81%D1%83%D0%BB%D1%8C%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C%D1%81%D1%8F%20%D0%BF%D0%BE%20%D0%BF%D0%BE%D0%B2%D0%BE%D0%B4%D1%83%20%D0%B1%D0%B0%D0%BD%D0%BA%D0%B5%D1%82%D0%B0" target="_blank" rel="noopener noreferrer" class="px-4 sm:px-5 py-2.5 rounded-xl bg-gold hover:bg-gold-light text-dark font-semibold text-xs sm:text-sm tracking-wide transition flex items-center gap-2">
                 <i data-lucide="message-circle" class="w-4 h-4"></i>
                 <span>Написать Яне в WhatsApp</span>
               </a>
@@ -839,52 +827,52 @@
     </div>
   </section>
 
-  <!-- Real Reviews Section (5.0 Rating on Yandex Maps) -->
-  <section id="reviews" class="py-16 sm:py-24 bg-dark">
+  <!-- Real Reviews Section (5.0 Rating) -->
+  <section id="reviews" class="py-14 sm:py-20 bg-dark overflow-hidden">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
-      <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-12 gap-4">
+      <div class="flex items-end justify-between mb-8 sm:mb-10 gap-4">
         <div>
-          <div class="flex items-center gap-2 mb-2">
+          <div class="flex items-center gap-2 mb-1.5 flex-wrap">
             <span class="text-xs font-bold text-gold uppercase tracking-widest">Честные оценки гостей</span>
-            <span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 text-[11px] font-bold">100% реальные отзывы</span>
+            <span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 text-[10px] sm:text-[11px] font-bold">100% реальные отзывы</span>
           </div>
-          <h2 class="font-display font-extrabold text-2xl sm:text-3xl lg:text-4xl text-white">
+          <h2 class="font-display font-extrabold text-xl sm:text-3xl text-white">
             Рейтинг 5.0 на Яндекс Картах
           </h2>
         </div>
         
         <div class="flex items-center gap-2">
-          <button onclick="scrollCarousel('reviews-carousel', -340)" aria-label="Предыдущий отзыв" class="w-10 h-10 rounded-xl bg-panel border border-border hover:border-gold/50 flex items-center justify-center text-slate-300 hover:text-white transition">
-            <i data-lucide="chevron-left" class="w-5 h-5"></i>
+          <button onclick="scrollCarousel('reviews-carousel', -300)" aria-label="Предыдущий отзыв" class="w-9 h-9 rounded-xl bg-panel border border-border hover:border-gold/50 flex items-center justify-center text-slate-300 hover:text-white transition">
+            <i data-lucide="chevron-left" class="w-4 h-4"></i>
           </button>
-          <button onclick="scrollCarousel('reviews-carousel', 340)" aria-label="Следующий отзыв" class="w-10 h-10 rounded-xl bg-panel border border-border hover:border-gold/50 flex items-center justify-center text-slate-300 hover:text-white transition">
-            <i data-lucide="chevron-right" class="w-5 h-5"></i>
+          <button onclick="scrollCarousel('reviews-carousel', 300)" aria-label="Следующий отзыв" class="w-9 h-9 rounded-xl bg-panel border border-border hover:border-gold/50 flex items-center justify-center text-slate-300 hover:text-white transition">
+            <i data-lucide="chevron-right" class="w-4 h-4"></i>
           </button>
         </div>
       </div>
 
       <!-- Reviews Carousel -->
-      <div id="reviews-carousel" class="flex overflow-x-auto snap-x snap-mandatory scrollbar-none gap-6 pb-4 -mx-4 px-4 sm:mx-0 sm:px-0">
+      <div id="reviews-carousel" class="flex overflow-x-auto snap-x snap-mandatory scrollbar-none gap-5 pb-4 -mx-4 px-4 sm:mx-0 sm:px-0">
         
         <!-- Review 1 -->
-        <div class="min-w-[300px] sm:min-w-[360px] md:min-w-[400px] snap-start bg-panel p-6 rounded-2xl border border-border flex flex-col justify-between">
+        <div class="w-[85vw] max-w-[320px] sm:max-w-[380px] shrink-0 snap-start bg-panel p-5 sm:p-6 rounded-2xl border border-border flex flex-col justify-between">
           <div>
-            <div class="flex items-center justify-between mb-4">
+            <div class="flex items-center justify-between mb-3">
               <div class="flex text-amber-400">
-                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+                <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+                <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+                <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+                <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
               </div>
               <span class="text-[11px] text-slate-400">Свадьба на 120 гостей</span>
             </div>
             <p class="text-xs sm:text-sm text-slate-200 leading-relaxed mb-4">
-              «Отмечали здесь свадьбу 19 сентября. Зал просто шикарный, настоящий дворец! На столах всё было не просто вкусно, а невероятно свежо и сытно — шашлык тает во рту, салаты идеальные. Отдельное огромное спасибо администратору Яне! Помогла составить меню, постоянно была на связи, контролировала всё. Гости до сих пор благодарят за праздник!»
+              «Отмечали здесь свадьбу 19 сентября. Зал просто шикарный, настоящий дворец! На столах всё было не просто вкусно, а невероятно свежо и сытно — шашлык тает во рту, салаты идеальные. Отдельное огромное спасибо администратору Яне! Помогла составить меню, постоянно была на связи. Гости до сих пор благодарят за праздник!»
             </p>
           </div>
-          <div class="pt-4 border-t border-border flex items-center justify-between">
+          <div class="pt-3.5 border-t border-border flex items-center justify-between">
             <div>
               <div class="font-bold text-white text-xs sm:text-sm">Алан и Диана К.</div>
               <div class="text-[11px] text-slate-400">Яндекс Карты, Знаток города</div>
@@ -894,23 +882,23 @@
         </div>
 
         <!-- Review 2 -->
-        <div class="min-w-[300px] sm:min-w-[360px] md:min-w-[400px] snap-start bg-panel p-6 rounded-2xl border border-border flex flex-col justify-between">
+        <div class="w-[85vw] max-w-[320px] sm:max-w-[380px] shrink-0 snap-start bg-panel p-5 sm:p-6 rounded-2xl border border-border flex flex-col justify-between">
           <div>
-            <div class="flex items-center justify-between mb-4">
+            <div class="flex items-center justify-between mb-3">
               <div class="flex text-amber-400">
-                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+                <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+                <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+                <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+                <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
               </div>
               <span class="text-[11px] text-slate-400">Юбилей 50 лет</span>
             </div>
             <p class="text-xs sm:text-sm text-slate-200 leading-relaxed mb-4">
-              «Праздновал свой юбилей 50 лет в Версале. Очень переживал, чтобы хватило еды и не было задержек. Официанты работали как швейцарские часы — пустые тарелки испарялись мгновенно, горячее принесли вовремя горячим с мангала. Приятно удивило, что свой алкоголь разрешили привезти без всяких дурацких сборов. Рекомендую от души!»
+              «Праздновал свой юбилей 50 лет в Версале. Очень переживал, чтобы хватило еды и не было задержек. Официанты работали как швейцарские часы — пустые тарелки испарялись мгновенно, горячее принесли вовремя горячим с мангала. Приятно удивило, что свой алкоголь разрешили привезти без всяких сборов. Рекомендую от души!»
             </p>
           </div>
-          <div class="pt-4 border-t border-border flex items-center justify-between">
+          <div class="pt-3.5 border-t border-border flex items-center justify-between">
             <div>
               <div class="font-bold text-white text-xs sm:text-sm">Михаил Сергеевич</div>
               <div class="text-[11px] text-slate-400">Яндекс Карты, Кисловодск</div>
@@ -920,23 +908,23 @@
         </div>
 
         <!-- Review 3 -->
-        <div class="min-w-[300px] sm:min-w-[360px] md:min-w-[400px] snap-start bg-panel p-6 rounded-2xl border border-border flex flex-col justify-between">
+        <div class="w-[85vw] max-w-[320px] sm:max-w-[380px] shrink-0 snap-start bg-panel p-5 sm:p-6 rounded-2xl border border-border flex flex-col justify-between">
           <div>
-            <div class="flex items-center justify-between mb-4">
+            <div class="flex items-center justify-between mb-3">
               <div class="flex text-amber-400">
-                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+                <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+                <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+                <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+                <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
               </div>
               <span class="text-[11px] text-slate-400">Выпускной вечер</span>
             </div>
             <p class="text-xs sm:text-sm text-slate-200 leading-relaxed mb-4">
-              «Проводили выпускной 11 класса. Зал огромный, места для танцев и конкурсов предостаточно! Акустика отличная, световое оборудование в зале суперское, не пришлось заказывать дорогой свет на стороне. Администрация во всем шла навстречу родительскому комитету. Дети и родители в полном восторге!»
+              «Проводили выпускной 11 класса. Зал огромный, места для танцев и конкурсов предостаточно! Акустика отличная, световое оборудование в зале суперское, не пришлось заказывать свет на стороне. Администрация во всем шла навстречу родителям. Дети и взрослые в полном восторге!»
             </p>
           </div>
-          <div class="pt-4 border-t border-border flex items-center justify-between">
+          <div class="pt-3.5 border-t border-border flex items-center justify-between">
             <div>
               <div class="font-bold text-white text-xs sm:text-sm">Елена В.</div>
               <div class="text-[11px] text-slate-400">Яндекс Карты</div>
@@ -947,7 +935,7 @@
 
       </div>
 
-      <div class="mt-8 text-center">
+      <div class="mt-6 text-center">
         <a href="https://yandex.ru/maps/org/versal/11581208126/reviews/" target="_blank" rel="noopener noreferrer" class="text-xs text-gold hover:underline inline-flex items-center gap-1">
           <span>Смотреть все 225+ отзывов на Яндекс Картах</span>
           <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
@@ -957,63 +945,63 @@
     </div>
   </section>
 
-  <!-- FAQ Section (Objection Killers) -->
-  <section class="py-16 sm:py-24 bg-panel border-t border-border">
+  <!-- FAQ Section -->
+  <section class="py-14 sm:py-20 bg-panel border-t border-border">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       
-      <div class="text-center mb-12">
-        <span class="text-xs font-bold text-gold uppercase tracking-widest block mb-2">Ответы на главные вопросы</span>
+      <div class="text-center mb-10">
+        <span class="text-xs font-bold text-gold uppercase tracking-widest block mb-1.5">Ответы на главные вопросы</span>
         <h2 class="font-display font-extrabold text-2xl sm:text-3xl text-white">
           Часто задаваемые вопросы
         </h2>
       </div>
 
-      <div class="space-y-4">
+      <div class="space-y-3.5">
         
-        <details class="group bg-surface p-5 rounded-2xl border border-border open:border-gold/40 transition">
-          <summary class="font-bold text-sm sm:text-base text-white cursor-pointer list-none flex items-center justify-between">
+        <details class="group bg-surface p-4 sm:p-5 rounded-2xl border border-border open:border-gold/40 transition">
+          <summary class="font-bold text-xs sm:text-base text-white cursor-pointer list-none flex items-center justify-between">
             <span>Можно ли приносить свой алкоголь, напитки и торт?</span>
-            <i data-lucide="chevron-down" class="w-4 h-4 text-gold group-open:rotate-180 transition"></i>
+            <i data-lucide="chevron-down" class="w-4 h-4 text-gold group-open:rotate-180 transition shrink-0 ml-2"></i>
           </summary>
           <p class="text-xs sm:text-sm text-slate-300 mt-3 leading-relaxed">
-            <strong>Да, абсолютно весь алкоголь, безалкогольные напитки, фрукты и праздничный торт вы можете привезти свои.</strong> У нас строго 0 ₽ пробковый сбор — мы не берем никаких комиссий за открывание бутылок и нарезку торта.
+            <strong>Да, абсолютно весь алкоголь, безалкогольные напитки, фрукты и торт вы можете привезти свои.</strong> У нас строго 0 ₽ пробковый сбор — мы не берем никаких комиссий за открывание бутылок и нарезку торта.
           </p>
         </details>
 
-        <details class="group bg-surface p-5 rounded-2xl border border-border open:border-gold/40 transition">
-          <summary class="font-bold text-sm sm:text-base text-white cursor-pointer list-none flex items-center justify-between">
+        <details class="group bg-surface p-4 sm:p-5 rounded-2xl border border-border open:border-gold/40 transition">
+          <summary class="font-bold text-xs sm:text-base text-white cursor-pointer list-none flex items-center justify-between">
             <span>Есть ли плата за аренду зала или только оплачивается меню?</span>
-            <i data-lucide="chevron-down" class="w-4 h-4 text-gold group-open:rotate-180 transition"></i>
+            <i data-lucide="chevron-down" class="w-4 h-4 text-gold group-open:rotate-180 transition shrink-0 ml-2"></i>
           </summary>
           <p class="text-xs sm:text-sm text-slate-300 mt-3 leading-relaxed">
             При заказе банкетного меню от 2 800 ₽ на персону <strong>арендная плата за зал составляет 0 ₽</strong>. Вы платите исключительно за банкетное меню и обслуживание ваших гостей.
           </p>
         </details>
 
-        <details class="group bg-surface p-5 rounded-2xl border border-border open:border-gold/40 transition">
-          <summary class="font-bold text-sm sm:text-base text-white cursor-pointer list-none flex items-center justify-between">
+        <details class="group bg-surface p-4 sm:p-5 rounded-2xl border border-border open:border-gold/40 transition">
+          <summary class="font-bold text-xs sm:text-base text-white cursor-pointer list-none flex items-center justify-between">
             <span>До скольки часов разрешено шуметь и танцевать?</span>
-            <i data-lucide="chevron-down" class="w-4 h-4 text-gold group-open:rotate-180 transition"></i>
+            <i data-lucide="chevron-down" class="w-4 h-4 text-gold group-open:rotate-180 transition shrink-0 ml-2"></i>
           </summary>
           <p class="text-xs sm:text-sm text-slate-300 mt-3 leading-relaxed">
             Здание ресторана расположено на обособленной закрытой территории без жилых домов вплотную. Ограничений по уровню громкости музыки внутри зала нет — праздник продолжается до завершения вашего торжества.
           </p>
         </details>
 
-        <details class="group bg-surface p-5 rounded-2xl border border-border open:border-gold/40 transition">
-          <summary class="font-bold text-sm sm:text-base text-white cursor-pointer list-none flex items-center justify-between">
+        <details class="group bg-surface p-4 sm:p-5 rounded-2xl border border-border open:border-gold/40 transition">
+          <summary class="font-bold text-xs sm:text-base text-white cursor-pointer list-none flex items-center justify-between">
             <span>Какая предоплата нужна для бронирования даты?</span>
-            <i data-lucide="chevron-down" class="w-4 h-4 text-gold group-open:rotate-180 transition"></i>
+            <i data-lucide="chevron-down" class="w-4 h-4 text-gold group-open:rotate-180 transition shrink-0 ml-2"></i>
           </summary>
           <p class="text-xs sm:text-sm text-slate-300 mt-3 leading-relaxed">
-            Для железной фиксации даты заключается официальный договор и вносится комфортный аванс (от 10 000 до 20 000 ₽ в зависимости от масштаба). Окончательный расчет производится непосредственно в день банкета.
+            Для железной фиксации даты заключается официальный договор и вносится комфортный аванс (от 10 000 до 20 000 ₽). Окончательный расчет производится непосредственно в день банкета.
           </p>
         </details>
 
-        <details class="group bg-surface p-5 rounded-2xl border border-border open:border-gold/40 transition">
-          <summary class="font-bold text-sm sm:text-base text-white cursor-pointer list-none flex items-center justify-between">
+        <details class="group bg-surface p-4 sm:p-5 rounded-2xl border border-border open:border-gold/40 transition">
+          <summary class="font-bold text-xs sm:text-base text-white cursor-pointer list-none flex items-center justify-between">
             <span>Есть ли своя парковка для свадебного кортежа и гостей?</span>
-            <i data-lucide="chevron-down" class="w-4 h-4 text-gold group-open:rotate-180 transition"></i>
+            <i data-lucide="chevron-down" class="w-4 h-4 text-gold group-open:rotate-180 transition shrink-0 ml-2"></i>
           </summary>
           <p class="text-xs sm:text-sm text-slate-300 mt-3 leading-relaxed">
             Да, ресторан располагает собственной закрытой охраняемой парковкой на 35+ автомобилей с удобным подъездом для свадебных лимузинов и микроавтобусов с гостями.
@@ -1024,17 +1012,17 @@
     </div>
   </section>
 
-  <!-- Contacts & Map Section (Verified coordinates 43.911752, 42.706753) -->
-  <section id="contacts" class="py-16 sm:py-24 bg-dark">
+  <!-- Contacts & Map Section -->
+  <section id="contacts" class="py-14 sm:py-20 bg-dark">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
         
         <!-- Contact Details -->
-        <div class="lg:col-span-5 space-y-6">
+        <div class="lg:col-span-5 space-y-5">
           <div>
-            <span class="text-xs font-bold text-gold uppercase tracking-widest block mb-2">Ждем вас в гости на дегустацию</span>
-            <h2 class="font-display font-extrabold text-2xl sm:text-3xl text-white mb-4">
+            <span class="text-xs font-bold text-gold uppercase tracking-widest block mb-1.5">Ждем вас в гости на дегустацию</span>
+            <h2 class="font-display font-extrabold text-2xl sm:text-3xl text-white mb-3">
               Контакты ресторана
             </h2>
             <p class="text-xs sm:text-sm text-slate-300">
@@ -1042,38 +1030,38 @@
             </p>
           </div>
 
-          <div class="space-y-4 text-xs sm:text-sm">
+          <div class="space-y-3.5 text-xs sm:text-sm">
             
-            <div class="flex items-start gap-3.5 p-4 rounded-xl bg-panel border border-border">
-              <div class="p-2.5 rounded-lg bg-gold/10 text-gold shrink-0">
-                <i data-lucide="map-pin" class="w-5 h-5"></i>
+            <div class="flex items-start gap-3 p-3.5 rounded-xl bg-panel border border-border">
+              <div class="p-2 rounded-lg bg-gold/10 text-gold shrink-0">
+                <i data-lucide="map-pin" class="w-4 h-4"></i>
               </div>
               <div>
-                <div class="font-bold text-white text-sm">Адрес ресторана:</div>
+                <div class="font-bold text-white text-xs sm:text-sm">Адрес ресторана:</div>
                 <div class="text-slate-300 mt-0.5">Ставропольский край, г. Кисловодск, ул. 40 лет Октября, 26 (1 этаж)</div>
-                <div class="text-[11px] text-slate-400 mt-1">Ориентир: удобный заезд, закрытая охраняемая территория</div>
+                <div class="text-[11px] text-slate-400 mt-0.5">Ориентир: удобный заезд, закрытая охраняемая территория</div>
               </div>
             </div>
 
-            <div class="flex items-start gap-3.5 p-4 rounded-xl bg-panel border border-border">
-              <div class="p-2.5 rounded-lg bg-gold/10 text-gold shrink-0">
-                <i data-lucide="phone-call" class="w-5 h-5"></i>
+            <div class="flex items-start gap-3 p-3.5 rounded-xl bg-panel border border-border">
+              <div class="p-2 rounded-lg bg-gold/10 text-gold shrink-0">
+                <i data-lucide="phone-call" class="w-4 h-4"></i>
               </div>
               <div>
-                <div class="font-bold text-white text-sm">Телефоны бронирования:</div>
-                <div class="mt-1 space-y-0.5">
+                <div class="font-bold text-white text-xs sm:text-sm">Телефоны бронирования:</div>
+                <div class="mt-0.5 space-y-0.5">
                   <div><a href="tel:+79383566365" class="text-white hover:text-gold font-semibold transition">+7 (938) 356-63-65</a></div>
                   <div><a href="tel:+79283481501" class="text-slate-300 hover:text-gold transition">+7 (928) 348-15-01</a></div>
                 </div>
               </div>
             </div>
 
-            <div class="flex items-start gap-3.5 p-4 rounded-xl bg-panel border border-border">
-              <div class="p-2.5 rounded-lg bg-gold/10 text-gold shrink-0">
-                <i data-lucide="clock" class="w-5 h-5"></i>
+            <div class="flex items-start gap-3 p-3.5 rounded-xl bg-panel border border-border">
+              <div class="p-2 rounded-lg bg-gold/10 text-gold shrink-0">
+                <i data-lucide="clock" class="w-4 h-4"></i>
               </div>
               <div>
-                <div class="font-bold text-white text-sm">Режим работы:</div>
+                <div class="font-bold text-white text-xs sm:text-sm">Режим работы:</div>
                 <div class="text-slate-300 mt-0.5">Ежедневно: 10:00 – 19:00 (прием заявок и просмотр залов)</div>
                 <div class="text-[11px] text-emerald-400 mt-0.5 font-medium">Банкетные мероприятия — круглосуточно до последнего гостя</div>
               </div>
@@ -1082,20 +1070,20 @@
           </div>
 
           <!-- Route buttons -->
-          <div class="flex flex-wrap gap-3 pt-2">
-            <a href="https://yandex.ru/maps/org/versal/11581208126/" target="_blank" rel="noopener noreferrer" class="px-4 py-2.5 rounded-xl bg-surface hover:bg-card border border-border text-white text-xs font-medium transition flex items-center gap-2">
-              <i data-lucide="navigation" class="w-4 h-4 text-amber-400"></i>
+          <div class="flex flex-wrap gap-2.5 pt-1">
+            <a href="https://yandex.ru/maps/org/versal/11581208126/" target="_blank" rel="noopener noreferrer" class="px-3.5 py-2 rounded-xl bg-surface hover:bg-card border border-border text-white text-xs font-medium transition flex items-center gap-1.5">
+              <i data-lucide="navigation" class="w-3.5 h-3.5 text-amber-400"></i>
               <span>Маршрут в Яндекс Картах</span>
             </a>
-            <a href="https://2gis.ru/kislovodsk" target="_blank" rel="noopener noreferrer" class="px-4 py-2.5 rounded-xl bg-surface hover:bg-card border border-border text-white text-xs font-medium transition flex items-center gap-2">
-              <i data-lucide="map" class="w-4 h-4 text-emerald-400"></i>
+            <a href="https://2gis.ru/kislovodsk" target="_blank" rel="noopener noreferrer" class="px-3.5 py-2 rounded-xl bg-surface hover:bg-card border border-border text-white text-xs font-medium transition flex items-center gap-1.5">
+              <i data-lucide="map" class="w-3.5 h-3.5 text-emerald-400"></i>
               <span>Открыть в 2ГИС</span>
             </a>
           </div>
 
         </div>
 
-        <!-- Interactive Leaflet Map Container -->
+        <!-- Interactive Map Container -->
         <div class="lg:col-span-7">
           <div class="relative rounded-3xl overflow-hidden border border-border shadow-2xl bg-panel aspect-[4/3] sm:aspect-[16/10]">
             <div id="versal-map" class="w-full h-full z-10"></div>
@@ -1108,13 +1096,13 @@
   </section>
 
   <!-- Quick Consultation Form (152-FZ Compliant) -->
-  <section class="py-16 sm:py-20 bg-gradient-to-b from-dark via-panel to-dark border-t border-border">
+  <section class="py-14 sm:py-20 bg-gradient-to-b from-dark via-panel to-dark border-t border-border">
     <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
       
-      <div class="bg-surface p-8 sm:p-12 rounded-3xl border border-border shadow-2xl">
-        <div class="text-center mb-8">
-          <span class="text-xs font-bold text-gold uppercase tracking-widest block mb-2">Бесплатная бронь даты</span>
-          <h2 class="font-display font-extrabold text-2xl sm:text-3xl text-white mb-2">
+      <div class="bg-surface p-6 sm:p-10 rounded-3xl border border-border shadow-2xl">
+        <div class="text-center mb-6 sm:mb-8">
+          <span class="text-xs font-bold text-gold uppercase tracking-widest block mb-1.5">Бесплатная бронь даты</span>
+          <h2 class="font-display font-extrabold text-xl sm:text-3xl text-white mb-2">
             Зарезервировать дату или зал
           </h2>
           <p class="text-xs sm:text-sm text-slate-300">
@@ -1122,40 +1110,40 @@
           </p>
         </div>
 
-        <form id="lead-form" onsubmit="handleFormSubmit(event)" class="space-y-5">
+        <form id="lead-form" onsubmit="handleFormSubmit(event)" class="space-y-4">
           
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
             <div>
-              <label class="block text-xs font-semibold text-slate-300 mb-1.5">Ваше имя</label>
-              <input type="text" id="user-name" required placeholder="Например: Алина" class="w-full px-4 py-3.5 rounded-xl bg-panel border border-border text-white text-base sm:text-sm focus:outline-none focus:border-gold transition">
+              <label class="block text-xs font-semibold text-slate-300 mb-1">Ваше имя</label>
+              <input type="text" id="user-name" required placeholder="Например: Алина" class="w-full px-4 py-3 rounded-xl bg-panel border border-border text-white text-base sm:text-sm focus:outline-none focus:border-gold transition">
             </div>
             <div>
-              <label class="block text-xs font-semibold text-slate-300 mb-1.5">Телефон (WhatsApp)</label>
-              <input type="tel" id="user-phone" required placeholder="+7 (___) ___-__-__" class="w-full px-4 py-3.5 rounded-xl bg-panel border border-border text-white text-base sm:text-sm focus:outline-none focus:border-gold transition">
+              <label class="block text-xs font-semibold text-slate-300 mb-1">Телефон (WhatsApp)</label>
+              <input type="tel" id="user-phone" required placeholder="+7 (___) ___-__-__" class="w-full px-4 py-3 rounded-xl bg-panel border border-border text-white text-base sm:text-sm focus:outline-none focus:border-gold transition">
             </div>
           </div>
 
           <div>
-            <label class="block text-xs font-semibold text-slate-300 mb-1.5">Желаемая дата или формат праздника</label>
-            <input type="text" id="user-date" placeholder="Например: Свадьба на 80 человек, суббота в августе" class="w-full px-4 py-3.5 rounded-xl bg-panel border border-border text-white text-base sm:text-sm focus:outline-none focus:border-gold transition">
+            <label class="block text-xs font-semibold text-slate-300 mb-1">Желаемая дата или формат праздника</label>
+            <input type="text" id="user-date" placeholder="Например: Свадьба на 80 человек, суббота в августе" class="w-full px-4 py-3 rounded-xl bg-panel border border-border text-white text-base sm:text-sm focus:outline-none focus:border-gold transition">
           </div>
 
-          <!-- 152-FZ Consent Checkbox: Unchecked by default, disables submit button until checked -->
-          <div class="pt-2">
-            <label class="flex items-start gap-3 cursor-pointer">
-              <input type="checkbox" id="fz152-consent" onchange="toggleSubmitButton()" class="mt-1 w-4 h-4 accent-gold rounded cursor-pointer">
-              <span class="text-xs text-slate-400 leading-snug">
-                Я даю свое согласие на обработку персональных данных в соответствии с требованиями <a href="#privacy-modal" onclick="openPrivacyModal(event)" class="underline hover:text-white">Федерального закона № 152-ФЗ «О персональных данных»</a>.
+          <!-- 152-FZ Consent Checkbox -->
+          <div class="pt-1">
+            <label class="flex items-start gap-2.5 cursor-pointer">
+              <input type="checkbox" id="fz152-consent" onchange="toggleSubmitButton()" class="mt-0.5 w-4 h-4 accent-gold rounded cursor-pointer shrink-0">
+              <span class="text-[11px] text-slate-400 leading-snug">
+                Я даю согласие на обработку персональных данных в соответствии с требованиями <a href="#privacy-modal" onclick="openPrivacyModal(event)" class="underline hover:text-white">152-ФЗ «О персональных данных»</a>.
               </span>
             </label>
           </div>
 
-          <button type="submit" id="submit-btn" disabled class="w-full py-4 rounded-xl bg-gold text-dark font-display font-bold text-sm tracking-wide text-center transition shadow-lg shadow-gold/20 disabled:opacity-40 disabled:cursor-not-allowed disabled:shadow-none hover:bg-gold-light flex items-center justify-center gap-2">
+          <button type="submit" id="submit-btn" disabled class="w-full py-3.5 rounded-xl bg-gold text-dark font-display font-bold text-xs sm:text-sm tracking-wide text-center transition shadow-lg shadow-gold/20 disabled:opacity-40 disabled:cursor-not-allowed disabled:shadow-none hover:bg-gold-light flex items-center justify-center gap-2">
             <i data-lucide="check" class="w-4 h-4"></i>
             <span>Отправить заявку администратору</span>
           </button>
 
-          <div id="form-success-msg" class="hidden p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 text-xs text-center font-medium">
+          <div id="form-success-msg" class="hidden p-3.5 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 text-xs text-center font-medium">
             Спасибо! Заявка успешно принята. Администратор Яна свяжется с вами в течение 10 минут.
           </div>
 
@@ -1167,12 +1155,12 @@
   </section>
 
   <!-- Legal Footer -->
-  <footer class="bg-dark border-t border-border py-12 text-xs text-slate-400">
+  <footer class="bg-dark border-t border-border py-10 text-xs text-slate-400">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8 pb-8 border-b border-border">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-6 sm:gap-8 mb-8 pb-8 border-b border-border">
         
-        <div class="space-y-3">
+        <div class="space-y-2">
           <div class="font-display font-extrabold text-white text-base tracking-wider uppercase">
             ВЕРСАЛЬ HALL
           </div>
@@ -1182,8 +1170,8 @@
         </div>
 
         <div>
-          <div class="font-bold text-white mb-3 uppercase tracking-wider text-[11px]">Навигация</div>
-          <div class="space-y-2 text-[11px]">
+          <div class="font-bold text-white mb-2.5 uppercase tracking-wider text-[11px]">Навигация</div>
+          <div class="space-y-1.5 text-[11px]">
             <div><a href="#halls" class="hover:text-gold transition">Залы и интерьеры</a></div>
             <div><a href="#calculator" class="hover:text-gold transition">Калькулятор банкета</a></div>
             <div><a href="#menu" class="hover:text-gold transition">Банкетное меню</a></div>
@@ -1192,8 +1180,8 @@
         </div>
 
         <div>
-          <div class="font-bold text-white mb-3 uppercase tracking-wider text-[11px]">Контакты</div>
-          <div class="space-y-2 text-[11px]">
+          <div class="font-bold text-white mb-2.5 uppercase tracking-wider text-[11px]">Контакты</div>
+          <div class="space-y-1.5 text-[11px]">
             <div>г. Кисловодск, ул. 40 лет Октября, 26</div>
             <div><a href="tel:+79383566365" class="hover:text-gold text-white font-medium">+7 (938) 356-63-65</a></div>
             <div><a href="tel:+79283481501" class="hover:text-gold">+7 (928) 348-15-01</a></div>
@@ -1202,22 +1190,22 @@
         </div>
 
         <div>
-          <div class="font-bold text-white mb-3 uppercase tracking-wider text-[11px]">Юридическая информация</div>
-          <div class="space-y-1.5 text-[11px] leading-snug">
+          <div class="font-bold text-white mb-2.5 uppercase tracking-wider text-[11px]">Юридическая информация</div>
+          <div class="space-y-1 text-[11px] leading-snug">
             <div>Банкетный комплекс «Версаль»</div>
             <div>ОГРНИП / ИНН зарегистрированы в РФ</div>
             <div>г. Кисловодск, Ставропольский край</div>
-            <div class="pt-2 text-gold font-medium">ХОСТИНГ И БАЗЫ ДАННЫХ — РОССИЙСКАЯ ФЕДЕРАЦИЯ (Ч. 5 СТ. 18 152-ФЗ)</div>
+            <div class="pt-1.5 text-gold font-medium">ХОСТИНГ И БАЗЫ ДАННЫХ — РОССИЙСКАЯ ФЕДЕРАЦИЯ (Ч. 5 СТ. 18 152-ФЗ)</div>
           </div>
         </div>
 
       </div>
 
-      <div class="flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px]">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-3 text-[11px]">
         <div>
           © 2026 Банкетный ресторан «Версаль». Все права защищены.
         </div>
-        <div class="flex items-center gap-4 flex-wrap">
+        <div class="flex items-center gap-3 flex-wrap">
           <a href="#" onclick="openPrivacyModal(event)" class="hover:underline">Политика конфиденциальности</a>
           <a href="#" onclick="openPrivacyModal(event)" class="hover:underline">Пользовательское соглашение</a>
           <a href="#" onclick="openPrivacyModal(event)" class="hover:underline">Политика файлов Cookie</a>
@@ -1228,24 +1216,24 @@
   </footer>
 
   <!-- Floating Mobile Quick Action Bar -->
-  <div class="sm:hidden fixed bottom-0 inset-x-0 z-40 bg-dark/95 backdrop-blur-md border-t border-border p-3 flex items-center gap-3">
-    <a href="tel:+79383566365" class="flex-1 py-3 rounded-xl bg-surface border border-border text-white text-xs font-semibold text-center flex items-center justify-center gap-2">
-      <i data-lucide="phone" class="w-4 h-4 text-emerald-400"></i>
+  <div class="sm:hidden fixed bottom-0 inset-x-0 z-40 bg-dark/95 backdrop-blur-md border-t border-border p-2.5 flex items-center gap-2">
+    <a href="tel:+79383566365" class="flex-1 py-2.5 rounded-xl bg-surface border border-border text-white text-xs font-semibold text-center flex items-center justify-center gap-1.5">
+      <i data-lucide="phone" class="w-3.5 h-3.5 text-emerald-400"></i>
       <span>Позвонить</span>
     </a>
-    <a href="#calculator" class="flex-1 py-3 rounded-xl bg-gold text-dark text-xs font-bold text-center flex items-center justify-center gap-2 shadow-lg shadow-gold/20">
-      <i data-lucide="calculator" class="w-4 h-4"></i>
+    <a href="#calculator" class="flex-1 py-2.5 rounded-xl bg-gold text-dark text-xs font-bold text-center flex items-center justify-center gap-1.5 shadow-lg shadow-gold/20">
+      <i data-lucide="calculator" class="w-3.5 h-3.5"></i>
       <span>Калькулятор</span>
     </a>
-    <a href="https://wa.me/79383566365?text=%D0%94%D0%BE%D0%B1%D1%80%D1%8B%D0%B9%20%D0%B4%D0%B5%D0%BD%D1%8C%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D1%83%D0%B7%D0%BD%D0%B0%D1%82%D1%8C%20%D0%BF%D0%BE%20%D0%BF%D0%BE%D0%B2%D0%BE%D0%B4%D1%83%20%D0%B1%D0%B0%D0%BD%D0%BA%D0%B5%D1%82%D0%B0%20%D0%B2%20%C2%AB%D0%92%D0%B5%D1%80%D1%81%D0%B0%D0%BB%D0%B5%C2%BB" target="_blank" rel="noopener noreferrer" class="w-12 h-12 rounded-xl bg-emerald-600 text-white flex items-center justify-center shrink-0">
-      <i data-lucide="message-circle" class="w-5 h-5"></i>
+    <a href="https://wa.me/79383566365?text=%D0%94%D0%BE%D0%B1%D1%80%D1%8B%D0%B9%20%D0%B4%D0%B5%D0%BD%D1%8C%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D1%83%D0%B7%D0%BD%D0%B0%D1%82%D1%8C%20%D0%BF%D0%BE%20%D0%BF%D0%BE%D0%B2%D0%BE%D0%B4%D1%83%20%D0%B1%D0%B0%D0%BD%D0%BA%D0%B5%D1%82%D0%B0%20%D0%B2%20%C2%AB%D0%92%D0%B5%D1%80%D1%81%D0%B0%D0%BB%D0%B5%C2%BB" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-xl bg-emerald-600 text-white flex items-center justify-center shrink-0">
+      <i data-lucide="message-circle" class="w-4 h-4"></i>
     </a>
   </div>
 
-  <!-- Cookie Consent Banner (localStorage persistent) -->
+  <!-- Cookie Consent Banner -->
   <div id="cookie-banner" class="fixed bottom-4 left-4 right-4 sm:left-auto sm:right-6 sm:max-w-md z-50 p-4 rounded-2xl bg-panel/95 backdrop-blur-md border border-gold/40 shadow-2xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs text-slate-300">
     <div class="leading-normal">
-      Мы используем cookie для обеспечения удобной работы калькулятора сметы и карты.
+      Мы используем cookie для обеспечения работы калькулятора сметы и карты.
     </div>
     <button onclick="acceptCookies()" class="shrink-0 px-4 py-2 rounded-xl bg-gold hover:bg-gold-light text-dark font-bold text-xs transition">
       Принять
@@ -1261,10 +1249,10 @@
           <i data-lucide="x" class="w-5 h-5"></i>
         </button>
       </div>
-      <p>Настоящая Политика регламентирует порядок обработки персональных данных гостей банкетного ресторана «Версаль» (г. Кисловодск, ул. 40 лет Октября, 26) в строгом соответствии с Федеральным законом РФ № 152-ФЗ «О персональных данных».</p>
-      <p>1. Сбор данных (имя, номер телефона) осуществляется исключительно для целей обратной связи, расчета сметы и согласования даты проведения мероприятия.</p>
+      <p>Настоящая Политика регламентирует порядок обработки персональных данных гостей банкетного ресторана «Версаль» (г. Кисловодск, ул. 40 лет Октября, 26) в строгом соответствии с 152-ФЗ «О персональных данных».</p>
+      <p>1. Сбор данных (имя, телефон) осуществляется исключительно для расчета сметы и согласования даты проведения мероприятия.</p>
       <p>2. Базы данных и серверы обработки информации физически расположены на территории Российской Федерации в соответствии с ч. 5 ст. 18 152-ФЗ.</p>
-      <p>3. Данные третьим лицам не передаются и не используются для спам-рассылок.</p>
+      <p>3. Данные третьим лицам не передаются.</p>
       <div class="pt-2 text-right">
         <button onclick="closePrivacyModal()" class="px-5 py-2 rounded-xl bg-gold text-dark font-bold">Закрыть</button>
       </div>
@@ -1273,7 +1261,6 @@
 
   <!-- Scripts -->
   <script>
-    // Initialize Lucide icons
     document.addEventListener('DOMContentLoaded', function() {
       lucide.createIcons();
       initMap();
@@ -1281,7 +1268,6 @@
       updateCalculator();
     });
 
-    // Horizontal Scroll Helper
     function scrollCarousel(id, amount) {
       const el = document.getElementById(id);
       if (el) {
@@ -1289,7 +1275,6 @@
       }
     }
 
-    // Cookie Consent
     function checkCookieConsent() {
       if (localStorage.getItem('versal_cookie_accepted') === 'true') {
         const b = document.getElementById('cookie-banner');
@@ -1302,7 +1287,6 @@
       if (b) b.classList.add('hidden');
     }
 
-    // 152-FZ Submit Button Toggle
     function toggleSubmitButton() {
       const cb = document.getElementById('fz152-consent');
       const btn = document.getElementById('submit-btn');
@@ -1311,27 +1295,23 @@
       }
     }
 
-    // Lead Form Handler
     function handleFormSubmit(e) {
       e.preventDefault();
       const name = document.getElementById('user-name').value;
       const phone = document.getElementById('user-phone').value;
       const date = document.getElementById('user-date').value;
 
-      // Construct message to WhatsApp
       const text = `Здравствуйте, Яна! Меня зовут ${name}, телефон ${phone}. Хочу уточнить дату банкета в «Версале»: ${date}`;
       const waUrl = `https://wa.me/79383566365?text=${encodeURIComponent(text)}`;
 
       const msg = document.getElementById('form-success-msg');
       if (msg) msg.classList.remove('hidden');
 
-      // Open WhatsApp after short delay
       setTimeout(() => {
         window.open(waUrl, '_blank');
       }, 600);
     }
 
-    // Privacy Modal
     function openPrivacyModal(e) {
       if (e) e.preventDefault();
       document.getElementById('privacy-modal').classList.remove('hidden');
@@ -1340,7 +1320,6 @@
       document.getElementById('privacy-modal').classList.add('hidden');
     }
 
-    // Calculator State & Logic
     let currentEventType = 'wedding';
     const eventTypeNames = {
       'wedding': 'Свадьба',
@@ -1372,7 +1351,6 @@
       document.getElementById('res-guests').textContent = `${guests} персон`;
       document.getElementById('res-event-type').textContent = eventTypeNames[currentEventType] || 'Банкет';
 
-      // Hall recommendation
       const hallEl = document.getElementById('res-hall');
       if (guests <= 35) {
         hallEl.textContent = 'Камерный VIP-Зал';
@@ -1380,7 +1358,6 @@
         hallEl.textContent = 'Grand Hall «Версаль»';
       }
 
-      // Menu Tier
       let menuRate = 2800;
       const radios = document.getElementsByName('menu_tier');
       radios.forEach(r => {
@@ -1399,7 +1376,6 @@
 
       document.getElementById('res-menu-tier').textContent = `${menuRate.toLocaleString('ru-RU')} ₽ / гость`;
 
-      // Options
       let extraPerGuest = 0;
       const optFurshet = document.getElementById('opt-furshet');
       if (optFurshet && optFurshet.checked) {
@@ -1412,7 +1388,6 @@
       document.getElementById('total-budget-display').textContent = `${totalBudget.toLocaleString('ru-RU')} ₽`;
       document.getElementById('per-guest-display').textContent = `(~${totalPerGuest.toLocaleString('ru-RU')} ₽ на 1 гостя под ключ)`;
 
-      // Build WhatsApp message URL
       const hallName = guests <= 35 ? 'Камерный VIP-Зал' : 'Grand Hall «Версаль»';
       const eventName = eventTypeNames[currentEventType] || 'Банкет';
       const waText = `Здравствуйте! Рассчитал банкет в «Версале» на сайте:
@@ -1431,7 +1406,6 @@
       }
     }
 
-    // Menu Tab Switcher
     function switchMenuTab(tabId) {
       document.querySelectorAll('.menu-content-grid').forEach(el => {
         el.classList.add('hidden');
@@ -1443,14 +1417,13 @@
 
       document.querySelectorAll('.menu-tab-btn').forEach(btn => {
         if (btn.getAttribute('data-tab') === tabId) {
-          btn.className = 'menu-tab-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-gold text-dark transition';
+          btn.className = 'menu-tab-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-gold text-dark transition';
         } else {
-          btn.className = 'menu-tab-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-panel hover:bg-surface text-slate-300 border border-border transition';
+          btn.className = 'menu-tab-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-panel hover:bg-surface text-slate-300 border border-border transition';
         }
       });
     }
 
-    // Verified Leaflet Map (Exact Coordinates: 43.911752, 42.706753)
     function initMap() {
       const mapEl = document.getElementById('versal-map');
       if (!mapEl) return;
@@ -1458,7 +1431,6 @@
       const lat = 43.911752;
       const lng = 42.706753;
 
-      // Attribution strictly disabled per standard
       const map = L.map('versal-map', {
         center: [lat, lng],
         zoom: 16,
@@ -1466,8 +1438,8 @@
         attributionControl: false
       });
 
-      // High-resolution CartoDB Dark Matter tiles (perfect for dark luxury theme)
-      L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+      // Watermark-free OpenStreetMap tiles
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19
       }).addTo(map);
 
