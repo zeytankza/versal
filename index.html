@@ -1133,7 +1133,7 @@
             <label class="flex items-start gap-2.5 cursor-pointer">
               <input type="checkbox" id="fz152-consent" onchange="toggleSubmitButton()" class="mt-0.5 w-4 h-4 accent-gold rounded cursor-pointer shrink-0">
               <span class="text-[11px] text-slate-400 leading-snug">
-                Я даю согласие на обработку персональных данных в соответствии с требованиями <a href="#privacy-modal" onclick="openPrivacyModal(event)" class="underline hover:text-white">152-ФЗ «О персональных данных»</a>.
+                Я даю согласие на обработку персональных данных в соответствии с требованиями <a href="#privacy-modal" onclick="openPrivacyModal(event, 'privacy')" class="underline hover:text-white">152-ФЗ «О персональных данных»</a>.
               </span>
             </label>
           </div>
@@ -1206,9 +1206,9 @@
           © 2026 Банкетный ресторан «Версаль». Все права защищены.
         </div>
         <div class="flex items-center gap-3 flex-wrap">
-          <a href="#" onclick="openPrivacyModal(event)" class="hover:underline">Политика конфиденциальности</a>
-          <a href="#" onclick="openPrivacyModal(event)" class="hover:underline">Пользовательское соглашение</a>
-          <a href="#" onclick="openPrivacyModal(event)" class="hover:underline">Политика файлов Cookie</a>
+          <a href="#" onclick="openPrivacyModal(event, 'privacy')" class="hover:underline">Политика конфиденциальности</a>
+          <a href="#" onclick="openPrivacyModal(event, 'terms')" class="hover:underline">Пользовательское соглашение</a>
+          <a href="#" onclick="openPrivacyModal(event, 'cookies')" class="hover:underline">Политика файлов Cookie</a>
         </div>
       </div>
 
@@ -1240,22 +1240,148 @@
     </button>
   </div>
 
-  <!-- Privacy Modal -->
-  <div id="privacy-modal" class="hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-sm p-4 overflow-y-auto flex items-center justify-center">
-    <div class="bg-panel border border-border rounded-2xl max-w-2xl w-full p-6 text-xs text-slate-300 space-y-4 max-h-[85vh] overflow-y-auto">
-      <div class="flex items-center justify-between border-b border-border pb-3">
-        <h3 class="font-display font-bold text-base text-white">Политика конфиденциальности и 152-ФЗ</h3>
-        <button onclick="closePrivacyModal()" class="text-slate-400 hover:text-white p-1">
+  <!-- Legal & Privacy Modal (152-FZ Compliant) -->
+  <div id="privacy-modal" class="hidden fixed inset-0 z-50 bg-black/85 backdrop-blur-md p-3 sm:p-6 overflow-y-auto flex items-center justify-center">
+    <div class="bg-[#101217] border border-border/80 rounded-2xl sm:rounded-3xl max-w-3xl w-full p-5 sm:p-8 text-xs text-slate-300 flex flex-col max-h-[90vh] shadow-2xl relative">
+      
+      <!-- Modal Header -->
+      <div class="flex items-start justify-between border-b border-border/60 pb-4 mb-4 shrink-0">
+        <div>
+          <span class="text-gold text-[10px] uppercase tracking-wider font-semibold">Юридические документы • 152-ФЗ РФ</span>
+          <h3 id="legal-modal-title" class="font-display font-bold text-lg sm:text-xl text-white mt-0.5">Правовая информация</h3>
+        </div>
+        <button onclick="closePrivacyModal()" class="text-slate-400 hover:text-white p-2 rounded-xl bg-card border border-border/50 transition" aria-label="Закрыть">
           <i data-lucide="x" class="w-5 h-5"></i>
         </button>
       </div>
-      <p>Настоящая Политика регламентирует порядок обработки персональных данных гостей банкетного ресторана «Версаль» (г. Кисловодск, ул. 40 лет Октября, 26) в строгом соответствии с 152-ФЗ «О персональных данных».</p>
-      <p>1. Сбор данных (имя, телефон) осуществляется исключительно для расчета сметы и согласования даты проведения мероприятия.</p>
-      <p>2. Базы данных и серверы обработки информации физически расположены на территории Российской Федерации в соответствии с ч. 5 ст. 18 152-ФЗ.</p>
-      <p>3. Данные третьим лицам не передаются.</p>
-      <div class="pt-2 text-right">
-        <button onclick="closePrivacyModal()" class="px-5 py-2 rounded-xl bg-gold text-dark font-bold">Закрыть</button>
+
+      <!-- Document Tabs -->
+      <div class="flex items-center gap-2 border-b border-border/50 pb-3 mb-4 shrink-0 overflow-x-auto scrollbar-none">
+        <button id="tab-btn-privacy" onclick="switchLegalTab('privacy')" class="px-3.5 py-1.5 rounded-xl font-medium text-xs transition bg-gold text-dark font-bold whitespace-nowrap">
+          Политика конфиденциальности (152-ФЗ)
+        </button>
+        <button id="tab-btn-terms" onclick="switchLegalTab('terms')" class="px-3.5 py-1.5 rounded-xl font-medium text-xs transition bg-card text-slate-400 hover:text-white border border-border/50 whitespace-nowrap">
+          Пользовательское соглашение
+        </button>
+        <button id="tab-btn-cookies" onclick="switchLegalTab('cookies')" class="px-3.5 py-1.5 rounded-xl font-medium text-xs transition bg-card text-slate-400 hover:text-white border border-border/50 whitespace-nowrap">
+          Политика файлов Cookie
+        </button>
       </div>
+
+      <!-- Tab Contents (Scrollable Area) -->
+      <div class="overflow-y-auto pr-2 space-y-4 text-slate-300 leading-relaxed text-[12px] sm:text-xs">
+        
+        <!-- TAB 1: Privacy Policy (152-FZ) -->
+        <div id="tab-content-privacy" class="space-y-4">
+          <div class="p-3.5 rounded-xl bg-card/60 border border-gold/20 text-gold-light text-[11px]">
+            Настоящая Политика регламентирует порядок обработки и защиты персональных данных пользователей сайта банкетного ресторана «Версаль» (Ставропольский край, г. Кисловодск, ул. 40 лет Октября, 26) в строгом соответствии с Федеральным законом РФ № 152-ФЗ «О персональных данных».
+          </div>
+
+          <div>
+            <h4 class="font-bold text-white text-sm mb-1">1. Общие положения</h4>
+            <p>1.1. Оператором персональных данных является администрация банкетного ресторана «Версаль» (далее — Оператор). Обработка персональных данных осуществляется с соблюдением принципов законности, справедливости и конфиденциальности.</p>
+            <p class="mt-1">1.2. Использование сайта и отправка форм обратной связи (расчет сметы, бронирование даты, заказ звонка) означает безоговорочное согласие пользователя с настоящей Политикой и условиями обработки его данных.</p>
+          </div>
+
+          <div>
+            <h4 class="font-bold text-white text-sm mb-1">2. Состав и категории обрабатываемых данных</h4>
+            <p>2.1. В рамках форм сайта обрабатываются исключительно данные, необходимые для бронирования и коммуникации:</p>
+            <ul class="list-disc list-inside mt-1 space-y-0.5 text-slate-400">
+              <li>Имя или обращение заказчика;</li>
+              <li>Номер контактного телефона (мобильный);</li>
+              <li>Параметры планируемого мероприятия (тип торжества, дата, ориентировочное число гостей, выбранный банкетный зал);</li>
+              <li>Технические обезличенные данные (IP-адрес, тип браузера, cookies).</li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="font-bold text-white text-sm mb-1">3. Цели обработки персональных данных</h4>
+            <p>3.1. Данные собираются и обрабатываются исключительно в целях:</p>
+            <ul class="list-disc list-inside mt-1 space-y-0.5 text-slate-400">
+              <li>Точного расчета банкетной сметы и подбора банкетного зала;</li>
+              <li>Проверки доступности дат и бронирования залов ресторана «Версаль» в Кисловодске;</li>
+              <li>Связи банкетного менеджера с клиентом через телефонный звонок или мессенджер WhatsApp;</li>
+              <li>Приглашения на бесплатную дегустацию меню и просмотр площадки.</li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="font-bold text-white text-sm mb-1">4. Локализация баз данных в РФ (ч. 5 ст. 18 152-ФЗ)</h4>
+            <p>4.1. В соответствии с ч. 5 ст. 18 Федерального закона № 152-ФЗ запись, систематизация, накопление, хранение, уточнение (обновление, изменение) и извлечение персональных данных граждан РФ осуществляются с использованием баз данных и вычислительных мощностей, физически расположенных строго на территории Российской Федерации.</p>
+            <p class="mt-1">4.2. Персональные данные защищены современными криптографическими протоколами SSL/TLS шифрования и не передаются третьим лицам, за исключением случаев, прямо предусмотренных законодательством РФ.</p>
+          </div>
+
+          <div>
+            <h4 class="font-bold text-white text-sm mb-1">5. Сроки обработки и уничтожение персональных данных</h4>
+            <p>5.1. Персональные данные обрабатываются до момента достижения целей обработки либо до момента отзыва согласия субъектом данных.</p>
+            <p class="mt-1">5.2. По достижении целей обработки или в случае отзыва согласия данные подлежат безвозвратному уничтожению в течение 30 календарных дней.</p>
+          </div>
+
+          <div>
+            <h4 class="font-bold text-white text-sm mb-1">6. Права субъекта данных и порядок отзыва согласия</h4>
+            <p>6.1. Пользователь имеет право на получение информации о сроках и способах обработки своих данных, а также на их уточнение, блокирование или уничтожение.</p>
+            <p class="mt-1">6.2. Отзыв согласия осуществляется путем отправки письменного заявления или сообщения на официальный контактный номер администрации ресторана: <span class="text-gold font-semibold">+7 (938) 356-63-65</span> либо по адресу: Ставропольский край, г. Кисловодск, ул. 40 лет Октября, 26. Срок удовлетворения запроса — не более 10 рабочих дней.</p>
+          </div>
+        </div>
+
+        <!-- TAB 2: Terms of Service -->
+        <div id="tab-content-terms" class="hidden space-y-4">
+          <div class="p-3.5 rounded-xl bg-card/60 border border-border text-slate-300 text-[11px]">
+            Настоящее Пользовательское соглашение определяет условия использования интерактивных сервисов и калькулятора сайта банкетного ресторана «Версаль».
+          </div>
+
+          <div>
+            <h4 class="font-bold text-white text-sm mb-1">1. Статус информации и расчет калькулятора</h4>
+            <p>1.1. Любые расчеты стоимости меню, дополнительных услуг и подарков, произведенные на сайте через интерактивный калькулятор, носят предварительный ознакомительный характер и не являются публичной офертой по смыслу ст. 437 Гражданского кодекса РФ.</p>
+            <p class="mt-1">1.2. Окончательная смета, перечень банкетных блюд с точными граммовками и условия бронирования фиксируются в официальном договоре возмездного оказания услуг, подписываемом сторонами лично в ресторане «Версаль».</p>
+          </div>
+
+          <div>
+            <h4 class="font-bold text-white text-sm mb-1">2. Бронирование залов и проведение дегустаций</h4>
+            <p>2.1. Предварительная бронь даты через сайт фиксируется за клиентом на срок до 48 часов для согласования условий и визита на площадку.</p>
+            <p class="mt-1">2.2. Заказчик имеет право на бесплатную дегустацию банкетных блюд и знакомство с шеф-поваром при бронировании мероприятия от 30 персон.</p>
+            <p class="mt-1">2.3. Акции «0 ₽ пробковый сбор» и «Подарочный комплект звука и света» предоставляются на условиях раннего бронирования даты при наличии свободных комплектов оборудования на выбранный день.</p>
+          </div>
+
+          <div>
+            <h4 class="font-bold text-white text-sm mb-1">3. Ограничение ответственности</h4>
+            <p>3.1. Администрация ресторана не несет ответственности за перебои в работе сайта, вызванные техническими сбоями интернет-провайдеров или хостинга, но предпринимает все разумные меры для их скорейшего устранения.</p>
+          </div>
+        </div>
+
+        <!-- TAB 3: Cookie Policy -->
+        <div id="tab-content-cookies" class="hidden space-y-4">
+          <div class="p-3.5 rounded-xl bg-card/60 border border-border text-slate-300 text-[11px]">
+            Настоящая Политика разъясняет, как сайт банкетного ресторана «Версаль» использует файлы cookie и веб-аналитику для удобства гостей.
+          </div>
+
+          <div>
+            <h4 class="font-bold text-white text-sm mb-1">1. Что такое файлы Cookie</h4>
+            <p>1.1. Cookie — это небольшие текстовые фрагменты данных, сохраняемые вашим браузером при посещении страниц сайта. Они позволяют сохранять пользовательские предпочтения и не вводить повторно параметры расчета.</p>
+          </div>
+
+          <div>
+            <h4 class="font-bold text-white text-sm mb-1">2. Какие Cookie используются на сайте</h4>
+            <p>2.1. Технические cookie — необходимы для корректной работы калькулятора сметы, запоминания выбранного банкетного зала, количества гостей и статуса согласия с политикой конфиденциальности в локальном хранилище (localStorage).</p>
+            <p class="mt-1">2.2. Аналитические cookie (Яндекс.Метрика) — используются исключительно для анонимного статистического учета посещаемости и улучшения удобства навигации без сбора персональных сведений.</p>
+          </div>
+
+          <div>
+            <h4 class="font-bold text-white text-sm mb-1">3. Управление файлами Cookie</h4>
+            <p>3.1. Пользователь может в любой момент отключить или очистить файлы cookie в настройках безопасности своего интернет-браузера (Chrome, Safari, Яндекс.Браузер, Firefox). Обратите внимание: при полном отключении технических cookie интерактивный калькулятор может сбрасывать сохраненные настройки.</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="pt-4 mt-3 border-t border-border/60 flex items-center justify-between shrink-0">
+        <span class="text-[11px] text-slate-400">г. Кисловодск, ул. 40 лет Октября, 26</span>
+        <button onclick="closePrivacyModal()" class="px-6 py-2.5 rounded-xl bg-gold hover:bg-gold-light text-dark font-bold text-xs transition shadow-lg shadow-gold/10">
+          Понятно, закрыть
+        </button>
+      </div>
+
     </div>
   </div>
 
@@ -1312,12 +1438,34 @@
       }, 600);
     }
 
-    function openPrivacyModal(e) {
+    function openPrivacyModal(e, tab = 'privacy') {
       if (e) e.preventDefault();
       document.getElementById('privacy-modal').classList.remove('hidden');
+      switchLegalTab(tab);
+      lucide.createIcons();
     }
     function closePrivacyModal() {
       document.getElementById('privacy-modal').classList.add('hidden');
+    }
+    function switchLegalTab(tab) {
+      const tabs = ['privacy', 'terms', 'cookies'];
+      const titles = {
+        'privacy': 'Политика конфиденциальности и 152-ФЗ',
+        'terms': 'Пользовательское соглашение',
+        'cookies': 'Политика использования файлов Cookie'
+      };
+      document.getElementById('legal-modal-title').textContent = titles[tab] || 'Правовая информация';
+      tabs.forEach(t => {
+        const btn = document.getElementById('tab-btn-' + t);
+        const content = document.getElementById('tab-content-' + t);
+        if (t === tab) {
+          btn.className = 'px-3.5 py-1.5 rounded-xl font-medium text-xs transition bg-gold text-dark font-bold whitespace-nowrap';
+          content.classList.remove('hidden');
+        } else {
+          btn.className = 'px-3.5 py-1.5 rounded-xl font-medium text-xs transition bg-card text-slate-400 hover:text-white border border-border/50 whitespace-nowrap';
+          content.classList.add('hidden');
+        }
+      });
     }
 
     let currentEventType = 'wedding';
